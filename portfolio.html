@@ -387,11 +387,11 @@
 <p>Filter a random sample of 100 Starbuck stores which are based in the US and select necessary columns for this project.</p>
                
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">starbuck_raw_data1</span> <span class="o">=</span> <span class="n">starbuck_raw_data[starbuck_raw_data[</span><span class="s">'Country'</span><span class="p">] == </span><span class="s">'US'</span><span class="p">]</span> 
-<span class="n">starbuck</span> <span class="o">=</span> <span class="n">starbuck = starbuck_raw_data1.loc[:, [</span><span class="s">'Store Number'</span><span class="p">,</span><span class="s"> 'City'</span><span class="p">,</span><span class="s"> 'State/Province'</span><span class="p">,</span><span class="s"> 'Latitude'</span><span class="p">,</span><span class="s"> 'Longitude'</span><span class="p">]]</span>                                
+<span class="n">starbuck</span> <span class="o">=</span> <span class="n">starbuck_raw_data1.loc[:, [</span><span class="s">'Store Number'</span><span class="p">,</span><span class="s"> 'City'</span><span class="p">,</span><span class="s"> 'State/Province'</span><span class="p">,</span><span class="s"> 'Latitude'</span><span class="p">,</span><span class="s"> 'Longitude'</span><span class="p">]]</span>                                
 <span class="n">starbuck_100</span> <span class="o">=</span> <span class="n">starbuck.sample(n</span> <span class="o">=</span><span class="n"> 100, </span><span class="n">random_state </span><span class="o">=</span><span class="n"> 5 )</span>                              
 </code></pre></div></div>        
         
-<p>I then used <strong> for loop </strong> to pair each Starbuck store with all Costco warehouses and calculate their associated distance based on their latitude and longitude. </p> 
+<p>I then used <code class="language-plaintext highlighter-rouge">for</code> loop to pair each Starbuck store with all Costco warehouses and calculate their associated distance based on their latitude and longitude using <code class="language-plaintext highlighter-rouge">distance</code> function. The output was stored in a dictionary called final <code class="language-plaintext highlighter-rouge">final</code>.</p> 
 
 <p class="small text-center"><img src="assets/Delivery Optimization/Python Code 2.jpg" width="720" class="align-center" />
 <em>Python code to to pair each Starbuck store with all Costco warehouses and calculate distances </em></p>         
