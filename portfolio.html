@@ -396,12 +396,12 @@
 <p>I then used <code class="language-plaintext highlighter-rouge">for</code> loop to pair each Starbuck store with all Costco warehouses and calculate their associated distance based on their latitude and longitude using <code class="language-plaintext highlighter-rouge">distance</code> function. The output was stored in a dictionary called <code class="language-plaintext highlighter-rouge">final</code>.</p> 
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Construct a dictionary to store final output
-</span><span class="n">final </span> <span class="o">=</span> <span class="n">{</span><span class="s">'Starbuck_store_id'</span><span class="p">: [],</span><span class="s"> 'Costco_warehouse_id'</span><span class="p">: [], </span><span class="s"> 'Distance'</span><span class="p">: []}
+</span><span class="n">final </span> <span class="o">=</span> <span class="n">{</span><span class="s">'Starbuck_store_id'</span><span class="p">: [],</span><span class="s"> 'Costco_warehouse_id'</span><span class="p">: [], </span><span class="s">'Distance'</span><span class="p">: []}
 </span>                            
 <span class="c1"># Use for loop to calculate the distance from each Starbuck store to all Costco warehouses.
-</span><span class="k">for</span><span class="n">starbuck_id </span><span class="k">in</span><span class="n"> starbuck_100[</span><span class="s">'Store Number'</span><span class="n">]:[
-    </span><span class="k">for</span>
-
+</span><span class="k">for</span><span class="n"> starbuck_id </span><span class="k">in</span><span class="n"> starbuck_100[</span><span class="s">'Store Number'</span><span class="n">]:
+    </span><span class="k">for</span><span class="n"> costco_id</span><span class="k"> in</span><span class="n"> costco[</span><span class="s">'stlocID'</span><span class="n">]:
+        </span><span class="n"> starbuck_store</span>   
 <span class="n">starbuck_100</span> <span class="o">=</span> <span class="n">starbuck.sample(n</span> <span class="o">=</span><span class="n"> 100, </span><span class="n">random_state </span><span class="o">=</span><span class="n"> 5 )</span>                              
 </code></pre></div></div>    
         
