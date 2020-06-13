@@ -371,22 +371,13 @@
         
 <p class="small text-center"><img src="assets/Delivery Optimization/Costco.jpg" width="680" class="align-center" />
 <em>A few first rows of Costco dataset</em></p>
-        
+          
 <p class="text-center"><a href="assets/Delivery Optimization/costco warehouse.csv" class="btn btn--info">Costco Dataset</a> <a href="assets/Delivery Optimization//starbuck.csv" class="btn btn--info">Starbuck Dataset</a> </p>                  
+
+<h3 id="data cleaning">Data cleaning</h3>             
         
 <p>Due to limited CPU processing power, I decided to cover 543 US-based Costco warehouses and a sample of 100 Starbuck stores nationwide. Both datasets were then cleaned and unnecessary columns were taken out. </p> 
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">time</span>
-<span class="c1"># Filter Costco warehouses which are based in the US and remove unncessary columns.        
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
-<span class="kn">import</span> <span class="nn">urllib.request</span>
-<span class="kn">from</span> <span class="nn">fastai.vision</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">fastai.metrics</span> <span class="kn">import</span> <span class="n">error_rate</span>
-<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageFile</span>
-<span class="n">ImageFile</span><span class="p">.</span><span class="n">LOAD_TRUNCATED_IMAGES</span> <span class="o">=</span> <span class="bp">True</span>
-</code></pre></div></div>        
-        
+            
 <p class="small text-center"><img src="assets/Delivery Optimization/code1.jpg" width="720" class="align-center" />
 <em>Python code to clean and filter data</em></p> 
         
