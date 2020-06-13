@@ -380,14 +380,15 @@
 
 <p>Filter Costco warehouses which are based in the US and select necessary columns for this project. We obtained 543 Costco warehouses around the US.</p>         
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">costco_raw_data1</span> <span class="o">=</span> <span class="n">starbuck_raw_data[starbuck_raw_data[</span><span class="s">'Country'</span><span class="p">] == </span><span class="s">'US'</span><span class="p">]</span> 
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">costco_raw_data1</span> <span class="o">=</span> <span class="n">costco_raw_data[costco_raw_data[</span><span class="s">'country'</span><span class="p">] == </span><span class="s">'US'</span><span class="p">]</span> 
 <span class="n">costco</span> <span class="o">=</span> <span class="n">costco_raw_data1.loc[:, [</span><span class="s">'stlocID'</span><span class="p">,</span><span class="s"> 'city'</span><span class="p">,</span><span class="s"> 'state'</span><span class="p">,</span><span class="s"> 'latitude'</span><span class="p">,</span><span class="s"> 'longitude'</span><span class="p">]]</span>                                
 </code></pre></div></div>
         
 <p>Filter a random sample of 100 Starbuck stores which are based in the US and select necessary columns for this project.</p>
                
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">starbuck_raw_data1</span> <span class="o">=</span> <span class="n">costco_raw_data[costco_raw_data[</span><span class="s">'country'</span><span class="p">] == </span><span class="s">'US'</span><span class="p">]</span> 
-<span class="n">costco</span> <span class="o">=</span> <span class="n">starbuck = starbuck_raw_data1.loc[:, [</span><span class="s">'Store Number'</span><span class="p">,</span><span class="s"> 'City'</span><span class="p">,</span><span class="s"> 'State/Province'</span><span class="p">,</span><span class="s"> 'Latitude'</span><span class="p">,</span><span class="s"> 'Longitude'</span><span class="p">]]</span>                                
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">starbuck_raw_data1</span> <span class="o">=</span> <span class="n">starbuck_raw_data[starbuck_raw_data[</span><span class="s">'Country'</span><span class="p">] == </span><span class="s">'US'</span><span class="p">]</span> 
+<span class="n">starbuck</span> <span class="o">=</span> <span class="n">starbuck = starbuck_raw_data1.loc[:, [</span><span class="s">'Store Number'</span><span class="p">,</span><span class="s"> 'City'</span><span class="p">,</span><span class="s"> 'State/Province'</span><span class="p">,</span><span class="s"> 'Latitude'</span><span class="p">,</span><span class="s"> 'Longitude'</span><span class="p">]]</span>                                
+<span class="n">starbuck_100</span> <span class="o">=</span> <span class="n">starbuck.sample(n</span> <span class="o">=</span><span class="n"> 100, </span><span class="n">random_state </span><span class="o">=</span><span class="n"> 5 )</span>                              
 </code></pre></div></div>        
         
 <p>I then used <strong> for loop </strong> to pair each Starbuck store with all Costco warehouses and calculate their associated distance based on their latitude and longitude. </p> 
