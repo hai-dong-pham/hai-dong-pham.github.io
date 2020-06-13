@@ -351,8 +351,15 @@
 
 <p>With that idea in mind, I undertook a pilot project that leveraged Python to optimize the delivery route between warehouse and a sample of customer. Due to the availability of data, I decided to choose Costco as a proxy for business with hundreds of warehouses and Starbuck stores as a sample of customers. These dataset were obtained from Kaggle.com. </p>  
 
-<p>The first dataset includes information on 782 Costco warehouses and the second one contains details about 25,600 Starbuck store worldwide. Below are some first rows of those datasets. </p>         
+<p>Let's get started with loading packages we are going to use in this project. </p>
         
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">from</span> <span class="nn">geopy</span> <span class="kn">import</span> <span class="o">distance</span>
+</code></pre></div></div>          
+        
+<p>The first dataset includes information on 782 Costco warehouses and the second one contains details about 25,600 Starbuck store worldwide. Below are some first rows of those datasets. </p>        
+                   
 <p class="small text-center"><img src="assets/Delivery Optimization/Starbuck.jpg" width="680" class="align-center" />
 <em>A few first rows of Starbuck dataset</em></p>
         
@@ -363,11 +370,8 @@
         
 <p>Due to limited CPU processing power, I decided to cover 543 US-based Costco warehouses and a sample of 100 Starbuck stores nationwide. Both datasets were then cleaned and unnecessary columns were taken out. </p> 
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%</span><span class="n">reload_ext</span> <span class="n">autoreload</span>
-<span class="o">%</span><span class="n">autoreload</span> <span class="mi">2</span>
-<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
-</code></pre></div></div>
-
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">time</span>
+<span class="c1"># Filter Costco warehouses which are based in the US and remove unncessary columns.        
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
 <span class="kn">import</span> <span class="nn">urllib.request</span>
