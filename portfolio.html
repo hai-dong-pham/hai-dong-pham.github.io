@@ -352,11 +352,17 @@
 <p>With that idea in mind, I undertook a pilot project that leveraged Python to optimize the delivery route between warehouse and a sample of customer. Due to the availability of data, I decided to choose Costco as a proxy for business with hundreds of warehouses and Starbuck stores as a sample of customers. These dataset were obtained from Kaggle.com. </p>  
 
 <p>Let's get started with loading packages we are going to use in this project. </p>
-        
+               
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
 <span class="kn">from</span> <span class="nn">geopy</span> <span class="kn">import</span> <span class="o">distance</span>
 </code></pre></div></div>          
+
+<h3 id="looking at the data">Looking at the data</h3>
+        
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">costco_raw_data</span> <span class="o">=</span> <span class="n">pd.read_csv</span><span class="p">(</span><span class="s">r'C:\Users\Hai Pham\Desktop\Delivery Optimization Project\costco warehouse.csv'</span><span class="p">)</span>
+<span class="n">starbuck_raw_data</span> <span class="o">=</span> <span class="n">pd.read_csv</span><span class="p">(</span><span class="s">r'C:\Users\Hai Pham\Desktop\Delivery Optimization Project\starbuck.csv'</span><span class="p">)</span>                               
+</code></pre></div></div>        
         
 <p>The first dataset includes information on 782 Costco warehouses and the second one contains details about 25,600 Starbuck store worldwide. Below are some first rows of those datasets. </p>        
                    
