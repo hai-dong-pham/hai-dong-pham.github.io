@@ -364,7 +364,7 @@
 <span class="n">starbuck_raw_data</span> <span class="o">=</span> <span class="n">pd.read_csv</span><span class="p">(</span><span class="s">r'C:\Users\Hai Pham\Desktop\Delivery Optimization Project\starbuck.csv'</span><span class="p">)</span>                               
 </code></pre></div></div>        
         
-<p>The first dataset includes information on 782 Costco warehouses and the second one contains details about 25,600 Starbuck store worldwide. Below are some first rows of those datasets. </p>        
+<p>The first dataset includes information on 782 Costco warehouses and the second one contains details about 25,600 Starbuck store worldwide. Below are some first rows of those datasets and link to download entire datasets. </p>        
                    
 <p class="small text-center"><img src="assets/Delivery Optimization/Starbuck.jpg" width="680" class="align-center" />
 <em>A few first rows of Starbuck dataset</em></p>
@@ -424,8 +424,11 @@
 <span class="n">final_dataframe.to_csv(</span><span class="s">'final.csv'</span><span class="n">)</span>
 </code></pre></div></div>  
 
-<p class="text-center"><a href="assets/Delivery Optimization/Delivery project code_Hai Pham.py" class="btn btn--info">Python Code</a> <a href="assets/Delivery Optimization//final.csv" class="btn btn--info">Output File</a> </p>        
-
+<p>Let's take a look at the first 10 rows of the final output. </p>
+  
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">final_dataframe.head(n</span><span class="o"> = </span><span class="mi">10</span><span class="n">)</span>
+</code></pre></div></div> 
+  
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: left;">
@@ -486,7 +489,9 @@
       <td>3.899803</td>
     </tr>
   </tbody>
-</table>  
+</table> 
+  
+<p class="text-center"><a href="assets/Delivery Optimization/Delivery project code_Hai Pham.py" class="btn btn--info">Python Code</a> <a href="assets/Delivery Optimization//final.csv" class="btn btn--info">Output File</a> </p>          
   
 <h3 id="conclusion">Conclusion</h3>    
 <p>Based on the output, Costco could make data-driven decisions on delivery to those Starbuck stores. Python was leveraged to facilitate robust data analytics process which was hard for Excel given its limited data processing.  </p>
