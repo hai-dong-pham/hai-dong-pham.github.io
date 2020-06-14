@@ -410,7 +410,9 @@
         <span class="n">dist</span><span class="o"> = </span><span class="n">distance.distance(starbuck_store_location, costco_warehouse_location).miles</span>
         
         <span class="n">final[</span><span class="s">'Starbuck_store_id'</span><span class="n">].append(starbuck_id)</span>
-        <span class="n">final[</span><span class="s">'Costco_warehouse_id''</span><span class="n">].append(costco_id)</span>
+        <span class="n">final[</span><span class="s">'Costco_warehouse_id'</span><span class="n">].append(costco_id)</span>
+         <span class="n">final[</span><span class="s">'Distance'</span><span class="n">].append(dist)</span>
+         
 </code></pre></div></div>    
         
 <p>The first outcome included 54,300 Starbuck – Costco pairs. I then sorted this output into ascending order of distance to come up with Costco warehouse that is closest to each Starbuck store. A final output of 100 pairs was obtained. Costco warehouse in each pair was the one selected to take goods and deliver to its paired Starbuck store. </p>        
