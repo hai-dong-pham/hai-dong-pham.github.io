@@ -414,11 +414,9 @@
         <span class="n">final[</span><span class="s">'Distance'</span><span class="n">].append(dist)</span>
 </code></pre></div></div>    
         
-<p>The model paired 100 Starbuck stores with all 540 Costco warehouses, leading to 54,300 pairs. I then sorted this output into ascending order of distance to come up with Costco warehouse that is closest to each Starbuck store, obtaining a final output of 100 paris. Costco warehouse in each pair was the one selected to take goods and deliver to its paired Starbuck store. </p>        
+<p>The model paired 100 Starbuck stores with all 540 Costco warehouses, leading to 54,300 pairs. I then sorted this output into ascending order of distance to come up with Costco warehouse that is closest to each Starbuck store, obtaining a final outcome of 100 paris. Costco warehouse in each pair was the one selected to take goods and deliver to its associated Starbuck store. </p>        
 
-<p class="small text-center"><img src="assets/Delivery Optimization/Python code 3.jpg" width="720" class="align-center" />
-<em>Python code to obtain the Starbuck-Costco pairs with the smallest distances</em></p>
-        
+       
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">final_dataframe</span><span class="o"> = </span><span class="n">pd.DataFrame(final)</span>
 <span class="n">final_dataframe</span><span class="o"> = </span><span class="n">final_dataframe.sort_values(by=[</span><span class="s">'Starbuck_store_id'</span><span class="p">,</span><span class="s">'Distance'<span class="n">], ascending</span><span class="o"> = </span><span class="mi">True</span><span class="n">)</span>
 <span class="n">final_dataframe</span><span class="o"> = </span><span class="n">final_dataframe.groupby(<span class="s">'Starbuck_store_id'</span><span class="n">).head(</span><span class="mi">1</span><span class="n">)</span>
@@ -426,10 +424,12 @@
 <span class="n">final_dataframe.to_csv(</span><span class="s">'final.csv'</span><span class="n">)</span>
 </code></pre></div></div>  
 
+<p class="text-center"><a href="assets/Delivery Optimization/Delivery project code_Hai Pham.py" class="btn btn--info">Python Code</a> <a href="assets/Delivery Optimization//final.csv" class="btn btn--info">Output File</a> </p>        
+          
+<h3 id="conclusion">Conclusion</h3>    
 <p>Based on the output, Costco could make data-driven decisions on delivery to those Starbuck stores. Python was leveraged to facilitate robust data analytics process which was hard for Excel given its limited data processing.  </p>
 
-<p class="text-center"><a href="assets/Delivery Optimization/Delivery project code_Hai Pham.py" class="btn btn--info">Python Code</a> <a href="assets/Delivery Optimization//final.csv" class="btn btn--info">Output File</a> </p>        
-        
+
 <hr />
 
 
