@@ -421,7 +421,9 @@
         
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">final_dataframe</span><span class="o"> = </span><span class="n">pd.DataFrame(final)</span>
 <span class="n">final_dataframe</span><span class="o"> = </span><span class="n">final_dataframe.sort_values(by=[</span><span class="s">'Starbuck_store_id'</span><span class="p">,</span><span class="s">'Distance'<span class="n">], ascending</span><span class="o"> = </span><span class="mi">True</span><span class="n">)</span>
-span class="n">final_dataframe</span><span class="o"> = </span><span class="n">final_dataframe.groupby(
+<span class="n">final_dataframe</span><span class="o"> = </span><span class="n">final_dataframe.groupby(<span class="s">'Starbuck_store_id'</span><span class="n">).head(</span><span class="mi">1</span><span class="n">)</span>
+
+<span class="n">final_dataframe.to_csv(</span><span class="s">'final.csv'</span><span class="n">)</span>
 </code></pre></div></div>  
 
 <p>Based on the output, Costco could make data-driven decisions on delivery to those Starbuck stores. Python was leveraged to facilitate robust data analytics process which was hard for Excel given its limited data processing.  </p>
