@@ -364,7 +364,7 @@
 <span class="n">starbuck_raw_data</span> <span class="o">=</span> <span class="n">pd.read_csv</span><span class="p">(</span><span class="s">r'C:\Users\Hai Pham\Desktop\Delivery Optimization Project\starbuck.csv'</span><span class="p">)</span>                               
 </code></pre></div></div>        
         
-<p>The first dataset includes information on 782 Costco warehouses and the second one contains details about 25,600 Starbuck store worldwide. Below are some first rows of those datasets and link to download entire datasets: </p>        
+<p>The first dataset includes information on 782 Costco warehouses and the second one contains details about 25,600 Starbuck store worldwide. Below are some first rows of those datasets and links to download entire datasets: </p>        
                    
 <p class="small text-center"><img src="assets/Delivery Optimization/10-row-starbuck.jpg" width="680" class="align-center" />
 <em>A few first rows of Starbuck dataset</em></p>
@@ -414,7 +414,7 @@
         <span class="n">final[</span><span class="s">'Distance'</span><span class="n">].append(dist)</span>
 </code></pre></div></div>    
         
-<p>The model paired 100 Starbuck stores with all 540 Costco warehouses, leading to 54,300 pairs. I then sorted this output into ascending order of distance to come up with Costco warehouse that is closest to each Starbuck store, obtaining a final outcome of 100 paris. Costco warehouse in each pair was the one selected to take goods and deliver to its associated Starbuck store. </p>        
+<p>The model paired 100 Starbuck stores with all 543 Costco warehouses, leading to 54,300 pairs. I then sorted this output into ascending order of distance to come up with Costco warehouse that is closest to each Starbuck store, obtaining a final outcome of 100 paris. Costco warehouse in each pair was the one selected to take goods and deliver to its associated Starbuck store. </p>        
 
        
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">final_dataframe</span><span class="o"> = </span><span class="n">pd.DataFrame(final)</span>
