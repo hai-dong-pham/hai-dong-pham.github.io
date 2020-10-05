@@ -337,7 +337,7 @@
   <li><a href="#customer-churn-prediction">Customer Churn Prediction using Machine Learning</a>              
   <li><a href="#delivery-route-optimization">Delivery Route Optimization</a>
       <ul>
-      <li><a href="#looking at the data">Looking at the data</a></li>
+      <li><a href="#looking at the data">Data Exploration</a></li>
       <li><a href="#data cleaning">Data cleaning</a></li>
       <li><a href="#modeling">Modeling</a></li>
       <li><a href="#conclusion">Conclusion</a></li>
@@ -366,7 +366,7 @@
 <span class="kn">from</span> <span class="nn">geopy</span> <span class="kn">import</span> <span class="n">distance</span>
 </code></pre></div></div>          
 
-<h3 id="looking at the data">Looking at the data</h3>
+<h3 id="looking at the data">Data Exploration</h3>
         
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">costco_raw_data</span> <span class="o">=</span> <span class="n">pd.read_csv</span><span class="p">(</span><span class="s">r'C:\Users\Hai Pham\Desktop\Delivery Optimization Project\costco warehouse.csv'</span><span class="p">)</span>
 <span class="n">starbuck_raw_data</span> <span class="o">=</span> <span class="n">pd.read_csv</span><span class="p">(</span><span class="s">r'C:\Users\Hai Pham\Desktop\Delivery Optimization Project\starbuck.csv'</span><span class="p">)</span>                               
@@ -382,7 +382,7 @@
           
 <p class="text-center"><a href="assets/Delivery Optimization/costco warehouse.csv" class="btn btn--info">Costco Dataset</a> <a href="assets/Delivery Optimization//starbuck.csv" class="btn btn--info">Starbuck Dataset</a> </p>                  
 
-<h3 id="data cleaning">Data cleaning</h3>             
+<h3 id="data cleaning">Data Cleaning</h3>             
         
 <p>Due to limited CPU processing power, I decided to cover only US-based Costco warehouses and a sample of Starbuck stores nationwide. Both datasets were then cleaned and unnecessary columns were taken out. </p> 
 
