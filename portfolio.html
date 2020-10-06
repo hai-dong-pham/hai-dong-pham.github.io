@@ -382,9 +382,9 @@
 <p>Based upon the structure function above, it is obvious that State and Area code are identifiers and thus have no explanatory power. Churn would be the response variable and the other 17 variables are explanatory variables. Let's visualize the distribution of response variable. </p>        
 
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tele_data</span> <span class="o">%>%</span> <span class="k">ggplot</span><span class="nn">(</span><span class="k">aes</span><span class="nn">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">Churn, </span><span class="n">fill</span> <span class="o">=</span> <span class="n">Churn</span><span class="nn">))</span> <span class="o">+
-                                                                                                                                                   </span><span class="k">geom_bar</span><span class="nn">()</span> <span class="o">+
-                                                                                                                                                   </span><span class="k">theme_set</span><span class="nn">(</span><span class="n">theme_bw</span><span class="nn">(</span><span class="n">base_size</span> <span class="o">=</span> <span class="mi">22</span><span class="nn">) )</span> <span class="o">+
-                                                                                                                                                   </span><span class="k">theme</span><span class="nn">(</span><span class="n">panel.grid.major</span>
+      </span><span class="k">geom_bar</span><span class="nn">()</span> <span class="o">+
+             </span><span class="k">theme_set</span><span class="nn">(</span><span class="n">theme_bw</span><span class="nn">(</span><span class="n">base_size</span> <span class="o">=</span> <span class="mi">22</span><span class="nn">) )</span> <span class="o">+
+                    </span><span class="k">theme</span><span class="nn">(</span><span class="n">panel.grid.major</span>
                                                                                                                                                    
 </code></pre></div></div>                                                                                                                                 
                                                   
