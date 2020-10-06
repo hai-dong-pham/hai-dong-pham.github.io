@@ -366,7 +366,7 @@
 <span class="kn">library</span><span class="nn">(</span><span class="n">caret</span><span class="nn">)</span>
 </code></pre></div></div>   
         
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tele_data</span> <span class="o">=</span> <span class="n">read_csv</span><span class="nn">(</span><span class="s">C:/Users/Hai Pham/Desktop/Telecom dataset.csv'</span><span class="nn">)</span>  
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tele_data</span> <span class="o">=</span> <span class="n">read_csv</span><span class="nn">(</span><span class="s">'C:/Users/Hai Pham/Desktop/Telecom dataset.csv'</span><span class="nn">)</span>  
 </code></pre></div></div> 
 
 <p>Take a look at the structure of dataset. </p>
@@ -385,8 +385,8 @@
               </span><span class="k">geom_bar</span><span class="nn">()</span> <span class="o">+
               </span><span class="k">theme_set</span><span class="nn">(</span><span class="n">theme_bw</span><span class="nn">(</span><span class="n">base_size</span> <span class="o">=</span> <span class="mi">22</span><span class="nn">) )</span> <span class="o">+
               </span><span class="k">theme</span><span class="nn">(</span><span class="n">panel.grid.major</span> <span class="o">=</span> <span class="n">element_blank</span><span class="nn">()</span><span class="n">,</span> 
-              </span><span class="n">panel.background</span> <span class="o">=</span> </span><span class="n">element_blank</span><span class="nn">() )</span> <span class="o">+
-              </span><span class="n">labs</span>
+                    </span><span class="n">panel.background</span> <span class="o">=</span> </span><span class="n">element_blank</span><span class="nn">() )</span> <span class="o">+
+                    </span><span class="n">labs</span><span class="nn">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">"Do customers churn?"</span><span class="n">, fill</span><span class="o">=</span> <span class="s">"Churn"</span>   
 </code></pre></div></div>                                                                                                                                 
                                                   
         
