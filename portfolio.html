@@ -474,8 +474,8 @@ logistic regression is a statistical model that uses a logistic function to mode
 variable, returning probabilities that customers will discontinue services. Let's develop a logistic regression model based on training set of 80% observations. </p>
 
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fit_total</span> <span class="o"><-</span> <span class="k">glm</span><span class="nn">(</span><span class="n">Churn</span> <span class="nn">~</span> <span class="n">.,
-                     </span><span class="n">family</span> <span class="o">=</span> <span class="n">binomial</span><span class="nn">(</span><span class="n">link</span> <span class="o">=</span> <span class="s">'logit'</span><span class="nn">)</span><span class="n">,    
-                    </span><span class="n">data</span> <span class="o">=</span> <span class="n">train</span><span class="nn">)
+                  </span><span class="n">family</span> <span class="o">=</span> <span class="n">binomial</span><span class="nn">(</span><span class="n">link</span> <span class="o">=</span> <span class="s">'logit'</span><span class="nn">)</span><span class="n">,    
+                 </span><span class="n">data</span> <span class="o">=</span> <span class="n">train</span><span class="nn">)
 </span><span class="k">summary</span><span class="nn">(</span><span class="n">fit_total</span><span class="nn">)</span>       
 </code></pre></div></div>
 
@@ -501,12 +501,11 @@ is the Confusion Matrix when we run the model against the test set. </p>
     <tr style="text-align: left;">
       <th> </th>
       <th>Reference</th>
-      <th></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>10015-169504</td>
+      <td]h>Prediction</th>
       <td>401</td>
       <td>6.346432</td>
     </tr>
