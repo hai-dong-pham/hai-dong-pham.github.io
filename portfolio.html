@@ -426,9 +426,32 @@
 
 <p class="small text-center"><img src="assets/Customer Churn/customer service call.JPG" width="680" class="align-center" />
 
-<p>From the above density plots, we can tell that there is not really a difference in account length between customer continuing and customer discontinuing services. However, the third plot indicates that customers churning services give more calls to customer services than customer continuing subscription plan. </p>          
+<p>From the above density plots, we can tell that there is not really a difference in account length between customer continuing and customer discontinuing services. However, the second plot indicates that customers churning services give more calls to customer services than customer continuing subscription plan. </p>          
         
-        
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">m_dat</span> <span class="o"><-</span> <span class="k">melt<span class="nn">(</span><span class="n">plot_dat, is.vars</span> <span class="o">=</span> <span class="s">"Churn"</span><span class="nn">)
+</span><span class="n">m_dat</span><span class="nn">$</span><span class="n">var_2</span> <span class="o"><-</span> <span class="k">rep</span><span class="nn">(</span><span class="s">"Total.day.minutes"</span><span class="n">, nrow</span><span class="nn">(</span><span class="n">m_dat<span class="nn">))
+</span><span class="n">m_dat</span><span class="nn">$</span><span class="n">var_2</span><span class="nn">[</span><span class="n">which</span><span class="n">m_dat</span><span class="nn">$</span><span class="n">variable</span> <span class="o">==</span> <span class="s">"Total.day.minutes"</span><span class="nn">)] <span class="o"><-</span> <span class="s">"Total Day Minutes"</span>  
+
+
+</span><span class="k">ggplot</span><span class="nn">(</span><span class="n">plot_dat, </span><span class="k">aes</span><span class="nn">(</span><span class="n">Account.length, fill </span><span class="o">=</span> <span class="n">Churn</span><span class="nn">))</span> <span class="o">+
+</span><span class="k">geom_density</span><span class="nn">(</span><span class="n">alpha<span class="o"> = <span class="mi">0.5</span><span class="nn">)</span> <span class="o">+
+</span><span class="k">theme_set</span><span class="nn">(</span><span class="n">theme_bw</span><span class="nn">(</span><span class="n">base_size</span> <span class="o">=</span> <span class="mi">22</span><span class="nn">) )</span> <span class="o">+
+</span><span class="k">theme</span><span class="nn">(</span><span class="n">panel.grid.major</span> <span class="o">=</span> <span class="n">element_blank</span><span class="nn">()</span><span class="n">,</span>
+                    </span><span class="n">panel.grid.minor</span> <span class="o">=</span> </span><span class="n">element_blank</span><span class="nn">()</span><span class="n">,</span>
+                    </span><span class="n">panel.border</span> <span class="o">=</span> </span><span class="n">element_blank</span><span class="nn">()</span><span class="n">,</span>
+                    </span><span class="n">panel.background</span> <span class="o">=</span> </span><span class="n">element_blank</span><span class="nn">() )</span> <span class="o">+
+</span><span class="k">labs</span><span class="nn">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">"Account length - Churn vs Non Churn"</span><span class="n">, fill </span><span class="o">=</span> <span class="s">"Churn"</span><span class="nn">)</span> <span class="o">+
+</span><span class="k">scale_fill_manual</span><span class="nn">(</span><span class="n">values</span> <span class="o">=</span> <span class="n">c</span><span class="nn">(</span><span class="s">"Yes"</span> <span class="o">=</span> <span class="s">"red"</span><span class="n">, </span><span class="s">"No"</span> <span class="o">=</span> <span class="s">"blue"</span><span class="nn">)</span><span class="n">,
+                  </span><span class="n">labels</span> <span class="o">=</span> <span class="n">c</span><span class="nn">(</span><span class="s">"Yes"</span> <span class="o">=</span> <span class="s">"Churn"</span><span class="n">, </span><span class="s">"No"</span> <span class="o">=</span> <span class="s">"Non-churn"</span><span class="nn">))</span>  
+</code></pre></div></div>           
+
+
+
+
+
+
+
+
         <h2 id="delivery-route-optimization">Project 2: Delivery Route Optimization</h2>
 
 <p>Given the boom in e-commerce, delivery service plays a vital part in creating competitive advantages and is key to minizing cost for businesses as well. E-commerce firms, whose thousands of warehouses are distributed nationwide, always want to minimize the distance to deliver goods from a warehouse to a customer. That being said, selecting which warehouse to take goods and deliver to a specific customer is the first thing to consider. Excel Solver can previously be used for this task. The strong expansion of e-commerce firms, however, inevitably leads to larger dataset over time that makes it hard for Excel to handle. To overcome this challenge, I believe <strong>Python</strong> is the way to go. </p>
