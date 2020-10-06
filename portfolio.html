@@ -491,8 +491,21 @@ International Calls, and Customer Service Calls. However, when a new model is ru
 those 4 variables, AIC increases from 1,800.4 to 1,932.4. Therefore, the best model trained from 
 the training set should be the one above with AIC of 1,800.4.</p>
 
-<p>The model performance is then evaluated by comparing its predictive values with actual values 
-in the test set. The metric that is selected for this classification problem is Accuracy. The model 
+<h3 id="Model Performance Evaluation">Model Performance Evaluation</h3>
+
+<p>The model performance is then evaluated by comparing its predictive values with actual values in the test set. </p> 
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">test.probs</span> <span class="o"><-</span> <span class="k">predict</span><span class="nn">(</span><span class="n">fit_total, test, type </span> <span class="o">=</span> <span class="s">'response'</span><span class="nn">)
+</span><span class="n">pred.logit</span> <span class="o"><-</span> <span class="k">rep</span><span class="nn">(</span><span class="s">'No'</span><span class="n">, length</span><span class="nn">(</span><span class="n">test.probs<span class="nn">))
+</span><span class="n">pred.logit</span><span class="nn">[</span><span class="n">test.probs</span><span class="nn">>=</span><span class="mi">0.5</span><span class="nn">]</span> <span class="o"><-</span> <span class="s">'Yes'
+
+</span><span class="k">table</span><span class="nn">(</span><span class="n">pred.logit, test</span><span class="nn">$</span><span class="n">Churn</span><span class="nn">)
+
+</span><span class="k">confusionMatrix</span><span class="nn">(</span><span class="n">test</span><span class="nn">$</span><span class="n">Churn, </span><span class="k">as.factor<span class="nn">(</span><span class="n">pred.logit</span><span class="nn">))</span>          
+</code></pre></div></div>
+
+
+<p>The metric for evaluation is Accuracy. The model 
 obtains an accuracy rate of 87.9% when it is used to predict response variables of test set. Below 
 is the Confusion Matrix when we run the model against the test set. </p> 
 
