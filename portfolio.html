@@ -474,8 +474,8 @@ logistic regression is a statistical model that uses a logistic function to mode
 variable, returning probabilities that customers will discontinue services. Let's develop a logistic regression model based on training set of 80% observations. </p>
 
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fit_total</span> <span class="o"><-</span> <span class="k">glm</span><span class="nn">(</span><span class="n">Churn</span> <span class="nn">~</span> <span class="n">.,
-                         </span><span class="n">family</span> <span class="o">=</span> <span class="n">binomial</span><span class="nn">(</span><span class="n">link</span> <span class="o">=</span> <span class="s">'logit'</span><span class="nn">)</span><span class="n">,    
-                        </span><span class="n">data</span> <span class="o">=</span> <span class="n">train</span><span class="nn">)
+                     </span><span class="n">family</span> <span class="o">=</span> <span class="n">binomial</span><span class="nn">(</span><span class="n">link</span> <span class="o">=</span> <span class="s">'logit'</span><span class="nn">)</span><span class="n">,    
+                    </span><span class="n">data</span> <span class="o">=</span> <span class="n">train</span><span class="nn">)
 </span><span class="k">summary</span><span class="nn">(</span><span class="n">fit_total</span><span class="nn">)</span>       
 </code></pre></div></div>
 
@@ -489,9 +489,41 @@ they are statistically different from zero and can help explain the response var
 coefficients go with the following variables: International Plan, Voice Mail Plan, Total 
 International Calls, and Customer Service Calls. However, when a new model is run with only 
 those 4 variables, AIC increases from 1,800.4 to 1,932.4. Therefore, the best model trained from 
-the training set should be the first one with AIC of 1,800.4.</p>
+the training set should be the one above with AIC of 1,800.4.</p>
 
-<p>
+<p>The model performance is then evaluated by comparing its predictive values with actual values 
+in the test set. The metric that is selected for this classification problem is Accuracy. The model 
+obtains an accuracy rate of 87.9% when it is used to predict response variables of test set. Below 
+is the Confusion Matrix when we run the model against the test set. </p> 
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: left;">
+      <th> </th>
+      <th>Reference</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>10015-169504</td>
+      <td>401</td>
+      <td>6.346432</td>
+    </tr>
+    <tr>
+      <td>10330-99342</td>
+      <td>97</td>
+      <td>7.462301</td>
+    </tr>
+    <tr>
+      <td>10691-100498</td>
+      <td>1333</td>
+      <td>11.866416</td>
+    </tr>
+  </tbody>
+</table> 
+
+
 
 
 
