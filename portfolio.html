@@ -394,7 +394,7 @@
 <p class="small text-center"><img src="assets/Customer Churn/churn variable.JPG" width="680" class="align-center" />
 <em>Response variable distribution</em></p>  
 
-<p>This is an imbalanced dataset with 2,850 No values and 483 Yes values in response variable. As a preliminary analysis we can visualize how features vary for customers that continue and discontinue services. </p>  
+<p>This is an imbalanced dataset with 2,850 No values and 483 Yes values in response variable. This imbalance issue should be taken into account in modeling step. As a preliminary analysis we can visualize how features vary for customers that continue and discontinue services. </p>  
         
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plot_dat</span> <span class="o"><-</span> <span class="n">tele_data
 </span><span class="n">plot_dat</span><span class="nn">$</span><span class="n">Churn</span> <span class="o"><-</span> <span class="n">as.factor</span><span class="nn">(</span><span class="n">plot_dat</span><span class="nn">$</span><span class="n">Churn</span><span class="nn">)
@@ -457,7 +457,10 @@
 
 <p class="small text-center"><img src="assets/Customer Churn/boxplot.JPG" width="680" class="align-center" />
 
-<p>The above boxplots show that Total Day Charge, Total Day Minutes, Total Evening Minutes, Total International Charge, and Total International Minutes of customers churning service tend to be higher than those of customer continuing services. </p>
+<p>The above boxplots show that Total Day Charge, Total Day Minutes, Total Evening Minutes, Total International Charge, and Total International Minutes of customers churning service tend to be higher than those of customer continuing services. Now that we get a good sense of response variable distribution and impact of certain features on the response variable, let's move to the modeling process. </p>
+
+<h3 id="Modeling">Modeling</h3>
+
 
 
 
