@@ -471,15 +471,27 @@
 
 <p>The response variable is a binary variable and classification problem is being solved so logistic regression is a good approach. The 
 logistic regression is a statistical model that uses a logistic function to model the binary response 
-variable, returning probabilities that customers will discontinue services. </p>
+variable, returning probabilities that customers will discontinue services. Let's develop a logistic regression model based on training set of 80% observations. </p>
 
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fit_total</span> <span class="o"><-</span> <span class="k">glm</span><span class="nn">(</span><span class="n">Churn</span> <span class="nn">~</span> <span class="n">.,
-                             </span><span class="n">family</span> <span class="o">=</span> <span class="n">binomial</span><span class="nn">(</span><span class="n">link</span> <span class="o">=</span> <span class="s">'logit'</span><span class="nn">)</span><span class="n">,    
-                             </span><span class="n">data</span> <span class="o">=</span> <span class="n">train</span><span class="nn">)
+                         </span><span class="n">family</span> <span class="o">=</span> <span class="n">binomial</span><span class="nn">(</span><span class="n">link</span> <span class="o">=</span> <span class="s">'logit'</span><span class="nn">)</span><span class="n">,    
+                        </span><span class="n">data</span> <span class="o">=</span> <span class="n">train</span><span class="nn">)
 </span><span class="k">summary</span><span class="nn">(</span><span class="n">fit_total</span><span class="nn">)</span>       
 </code></pre></div></div>
 
+<p class="small text-center"><img src="assets/Customer Churn/logistic output.JPG" width="680" class="align-center" />
+<em>Logistic regression output</em></p> 
 
+<p>The quality of fit of logistic is evaluated based on its Akaike Information Criterion (AIC). The 
+best fit model according to AIC is the one that explains the greatest amount of variation using the 
+fewest possible independent variables. Therefore, the lower AIC, the better the model is. The above model achieves an AIC of 1,800.4. Out of 17 coefficients, there are 4 ones that have p-values lower than 0.05, which means that 
+they are statistically different from zero and can help explain the response variable. Those 4 
+coefficients go with the following variables: International Plan, Voice Mail Plan, Total 
+International Calls, and Customer Service Calls. However, when a new model is run with only 
+those 4 variables, AIC increases from 1,800.4 to 1,932.4. Therefore, the best model trained from 
+the training set should be the first one with AIC of 1,800.4.</p>
+
+<p>
 
 
 
