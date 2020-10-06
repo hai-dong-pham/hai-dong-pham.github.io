@@ -504,13 +504,10 @@ the training set should be the one above with AIC of 1,800.4.</p>
 </span><span class="k">confusionMatrix</span><span class="nn">(</span><span class="n">test</span><span class="nn">$</span><span class="n">Churn, </span><span class="k">as.factor<span class="nn">(</span><span class="n">pred.logit</span><span class="nn">))</span>          
 </code></pre></div></div>
 
+<p class="small text-center"><img src="assets/Customer Churn/accuracy.JPG" width="680" class="align-center" />
+<em>Confusion Matrix & Accuracy Rate</em></p> 
 
-<p>The metric for evaluation is Accuracy. The model 
-obtains an accuracy rate of 87.9% when it is used to predict response variables of test set. Below 
-is the Confusion Matrix when we run the model against the test set. </p> 
-
-<p class="small text-center"><img src="assets/Customer Churn/Confusion Matrix.JPG" width="380" class="align-center" />
-<em>Confusion Matrix</em></p> 
+<p>The metric for evaluation is Accuracy. The model obtains an accuracy rate of 87.9% when it is used to predict response variables of test set. </p> 
 
 <p>Given pretty good accuracy rate of 87.9%, the above model overcomes the issue of imblanced data in the training set and thus can be leveraged to predict customers that are likely to churn going forward. </p>
 
