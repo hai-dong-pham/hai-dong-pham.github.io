@@ -366,12 +366,12 @@
 <span class="kn">library</span><span class="nn">(</span><span class="n">caret</span><span class="nn">)</span>
 </code></pre></div></div>   
         
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tele_data</span> <span class="o">=</span> <span class="n">read_csv</span><span class="p">(</span><span class="s">C:/Users/Hai Pham/Desktop/Telecom dataset.csv'</span><span class="p">)</span>  
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tele_data</span> <span class="o">=</span> <span class="n">read_csv</span><span class="nn">(</span><span class="s">C:/Users/Hai Pham/Desktop/Telecom dataset.csv'</span><span class="nn">)</span>  
 </code></pre></div></div> 
 
 <p>Take a look at the structure of dataset. </p>
         
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">str</span><span class="n">(tele_data)</span>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">str</span><span class="nn">(</span><span class="n">tele_data</span><span class="nn">)</span>
 </code></pre></div></div> 
 
 <p class="small text-center"><img src="assets/Customer Churn/Tele_data_str.JPG" width="680" class="align-center" />
@@ -381,8 +381,17 @@
 
 <p>Based upon the structure function above, it is obvious that State and Area code are identifiers and thus have no explanatory power. Churn would be the response variable and the other 17 variables are explanatory variables. Let's visualize the distribution of response variable. </p>        
 
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tele_data</span> <span class="o">%>%</span> <span class="k">ggplot</span><span class="n">(</span><span class="k">aes</span><span class="n">(x</span> <span class="o">=</span> <span class="n">Churn, </span><span class="n">fill</span> <span class="o">=</span> <span class="n">Churn))</span>
-</code></pre></div></div>     
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tele_data</span> <span class="o">%>%</span> <span class="k">ggplot</span><span class="nn">(</span><span class="k">aes</span><span class="nn">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">Churn, </span><span class="n">fill</span> <span class="o">=</span> <span class="n">Churn</span><span class="nn">))</span> <span class="o">+</span>
+</code></pre></div></div>                                                                                                                                 <span class="k">geom_bar</span><span class="nn">()</span> <span class="o">+</span>
+                                                  
+        
+        
+        
+        
+        
+        
+        
+        
         
         <h2 id="delivery-route-optimization">Delivery Route Optimization</h2>
 
