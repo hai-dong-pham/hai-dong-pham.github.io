@@ -464,10 +464,18 @@
 <p>Split the data into train/test sets with 80% of observations for train dataset and 20% of observations for test dataset. </p>
 
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">set.seed</span><span class="nn">(</span><span class="mi">101</span><span class="nn">)
-              </span><span class="n">sample</span> <span class="o">=</span> <span class="k">sample.int</span><span class="nn">(</span><span class="n">n</span> <span class="o">=</span> <span class="n">nrow</span><span class="nn">(</span><span class="n">tele_data</span><span class="nn">)</span><span class="n">, size</span> <span class="o">=</span> <span class="n">floor</span><span class="nn">(</span><span class="mi">.8</span><span class="nn">*</span><span class="n">nrow</span><span class="nn">(</span><span class="n">tele_data</span><span class="nn">))</span><span class="n">, replace</span> <span class="o"> = </span> <span class="nn"> FALSE) </span>          
-              </span><span class="n">train</span> <span class="o">=</span> <span class="n">tele_data</span><span class="nn">[</span><span class="n">sample, </span> <span class="nn">]
-              </span><span class="n">test</span> <span class="o">=</span> <span class="n">tele_data</span><span class="nn">[-</span><span class="n">sample, </span> <span class="nn">]       
+</span><span class="n">sample</span> <span class="o">=</span> <span class="k">sample.int</span><span class="nn">(</span><span class="n">n</span> <span class="o">=</span> <span class="n">nrow</span><span class="nn">(</span><span class="n">tele_data</span><span class="nn">)</span><span class="n">, size</span> <span class="o">=</span> <span class="n">floor</span><span class="nn">(</span><span class="mi">.8</span><span class="nn">*</span><span class="n">nrow</span><span class="nn">(</span><span class="n">tele_data</span><span class="nn">))</span><span class="n">, replace</span> <span class="o">=</span> <span class="nn">FALSE)          
+</span><span class="n">train</span> <span class="o">=</span> <span class="n">tele_data</span><span class="nn">[</span><span class="n">sample, </span> <span class="nn">]
+</span><span class="n">test</span> <span class="o">=</span> <span class="n">tele_data</span><span class="nn">[-</span><span class="n">sample, </span> <span class="nn">]</span>       
 </code></pre></div></div>
+
+<p>The response variable in this dataset is a binary variable and classification problem is being solved so logistic regression is a good approach to this problem. The 
+logistic regression is a statistical model that uses a logistic function to model the binary response 
+variable, returning probabilities that customers will discontinue services. </p>
+
+
+
+
 
 
 
