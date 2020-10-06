@@ -430,7 +430,7 @@
         
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">m_dat</span> <span class="o"><-</span> <span class="k">melt<span class="nn">(</span><span class="n">plot_dat, is.vars</span> <span class="o">=</span> <span class="s">"Churn"</span><span class="nn">)
 </span><span class="n">m_dat</span><span class="nn">$</span><span class="n">var_2</span> <span class="o"><-</span> <span class="k">rep</span><span class="nn">(</span><span class="s">"Total.day.minutes"</span><span class="n">, nrow</span><span class="nn">(</span><span class="n">m_dat<span class="nn">))
-</span><span class="n">m_dat</span><span class="nn">$</span><span class="n">var_2</span><span class="nn">[</span><span class="n">which</span><span class="n">m_dat</span><span class="nn">$</span><span class="n">variable</span> <span class="o">==</span> <span class="s">"Total.day.minutes"</span><span class="nn">)] <span class="o"><-</span> <span class="s">"Total Day Minutes"</span>  
+</span><span class="n">m_dat</span><span class="nn">$</span><span class="n">var_2</span><span class="nn">[</span><span class="n">which</span><span class="nn">(</span><span class="n">m_dat</span><span class="nn">$</span><span class="n">variable</span> <span class="o">==</span> <span class="s">"Total.day.minutes"</span><span class="nn">)] <span class="o"><-</span> <span class="s">"Total Day Minutes"</span>  
 
 
 </span><span class="k">ggplot</span><span class="nn">(</span><span class="n">plot_dat, </span><span class="k">aes</span><span class="nn">(</span><span class="n">Account.length, fill </span><span class="o">=</span> <span class="n">Churn</span><span class="nn">))</span> <span class="o">+
