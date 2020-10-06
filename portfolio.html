@@ -469,11 +469,15 @@
 </span><span class="n">test</span> <span class="o">=</span> <span class="n">tele_data</span><span class="nn">[-</span><span class="n">sample, </span> <span class="nn">]</span>       
 </code></pre></div></div>
 
-<p>The response variable in this dataset is a binary variable and classification problem is being solved so logistic regression is a good approach to this problem. The 
+<p>The response variable is a binary variable and classification problem is being solved so logistic regression is a good approach. The 
 logistic regression is a statistical model that uses a logistic function to model the binary response 
 variable, returning probabilities that customers will discontinue services. </p>
 
-
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fit_total</span> <span class="o"><-</span> <span class="k">glm</span><span class="nn">(</span><span class="n">Churn</span> <span class="nn">~</span> <span class="n">.,
+                             </span><span class="n">family</span> <span class="o">=</span> <span class="n">binomial</span><span class="nn">(</span><span class="n">link</span> <span class="o">=</span> <span class="s">'logit'</span><span class="nn">)</span><span class="n">,    
+                             </span><span class="n">data</span> <span class="o">=</span> <span class="n">train</span><span class="nn">)
+</span><span class="k">summary</span><span class="nn">(</span><span class="n">fit_total</span><span class="nn">)</span>       
+</code></pre></div></div>
 
 
 
