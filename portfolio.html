@@ -334,8 +334,8 @@
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-bookmark"></i> Table of Contents</h4></header>
               <ul class="toc__menu">
-  <li><a href="#customer-churn-prediction">Customer Churn Prediction using Machine Learning</a>              
-  <li><a href="#delivery-route-optimization">Delivery Route Optimization</a>
+  <li><a href="#customer-churn-prediction">Project 1: Customer Churn Prediction using Machine Learning</a>              
+  <li><a href="#delivery-route-optimization">Project 2: Delivery Route Optimization</a>
       <ul>
       <li><a href="#looking at the data">Data Exploration</a></li>
       <li><a href="#data cleaning">Data cleaning</a></li>
@@ -348,7 +348,7 @@
             </nav>
           </aside>
         
-        <h2 id="customer-churn-prediction">Customer Churn Prediction using Machine Learning</h2>
+        <h2 id="customer-churn-prediction">Project 1: Customer Churn Prediction using Machine Learning</h2>
 <p>Customer retention is key to sustainable growth for Software-as-a-Service (SaaS) companies since the cost of retaining existing customers is much less than acquiring new ones. Customers, however, now retract their loyalty more quickly than they did a few years ago. Therefore, identifying factors that affect customers’ decision on canceling a subscription is becoming increasingly crucial for these firms. </p> 
 
 <p>My goal is to develop a prediction model that helps those firms identify customers that are likely to discontinue their services so that those firms can take necessary actions to retain their current customers. Due to unavailability of customer data of SaaS companies, I searched for similar data in other industries to use in this project and came up with a dataset of a telecommunication firm on Kaggle. With subscription-based business of telecommunication, this customer dataset would be a good alternative to that of SaaS. The inputs for this project would be customer’s historical behaviors. Based on those data a classification model is trained and then used to predict if certain customers are going to discontinue services in the near future. <strong>R</strong> is the tool leveraged for this project. </p>        
@@ -405,18 +405,31 @@
                     </span><span class="n">panel.grid.minor</span> <span class="o">=</span> </span><span class="n">element_blank</span><span class="nn">()</span><span class="n">,</span>
                     </span><span class="n">panel.border</span> <span class="o">=</span> </span><span class="n">element_blank</span><span class="nn">()</span><span class="n">,</span>
                     </span><span class="n">panel.background</span> <span class="o">=</span> </span><span class="n">element_blank</span><span class="nn">() )</span> <span class="o">+
-</span><span class="k">labs</span><span class="nn">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">"Account length - Churn vs Non Churn"</span><span class="n">, fill</span><span class="o">=</span> <span class="s">"Churn"</span><span class="nn">)</span> <span class="o">+
+</span><span class="k">labs</span><span class="nn">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">"Account length - Churn vs Non Churn"</span><span class="n">, fill </span><span class="o">=</span> <span class="s">"Churn"</span><span class="nn">)</span> <span class="o">+
 </span><span class="k">scale_fill_manual</span><span class="nn">(</span><span class="n">values</span> <span class="o">=</span> <span class="n">c</span><span class="nn">(</span><span class="s">"Yes"</span> <span class="o">=</span> <span class="s">"red"</span><span class="n">, </span><span class="s">"No"</span> <span class="o">=</span> <span class="s">"blue"</span><span class="nn">)</span><span class="n">,
-                </span><span class="n">labels</span> <span class="o">=</span> <span class="n">c</span><span class="nn">(</span><span class="s">"Yes"</span> <span class="o">=</span> <span class="s">"Churn"</span><span class="n">, </span><span class="s">"No"</span> <span class="o">=</span> <span class="s">"Non-churn"</span><span class="nn">))</span>  
+                  </span><span class="n">labels</span> <span class="o">=</span> <span class="n">c</span><span class="nn">(</span><span class="s">"Yes"</span> <span class="o">=</span> <span class="s">"Churn"</span><span class="n">, </span><span class="s">"No"</span> <span class="o">=</span> <span class="s">"Non-churn"</span><span class="nn">))</span>  
 </code></pre></div></div>         
         
 <p class="small text-center"><img src="assets/Customer Churn/account length vs churn.JPG" width="680" class="align-center" />
         
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">ggplot</span><span class="nn">(</span><span class="n">plot_dat, </span><span class="k">aes</span><span class="nn">(</span><span class="n">Customer.service.calls, fill </span><span class="o">=</span> <span class="n">Churn</span><span class="nn">))</span> <span class="o">+
+</span><span class="k">geom_density</span><span class="nn">(</span><span class="n">alpha<span class="o"> = <span class="mi">0.5</span><span class="nn">)</span> <span class="o">+
+</span><span class="k">theme_set</span><span class="nn">(</span><span class="n">theme_bw</span><span class="nn">(</span><span class="n">base_size</span> <span class="o">=</span> <span class="mi">22</span><span class="nn">) )</span> <span class="o">+
+</span><span class="k">theme</span><span class="nn">(</span><span class="n">panel.grid.major</span> <span class="o">=</span> <span class="n">element_blank</span><span class="nn">()</span><span class="n">,</span>
+                    </span><span class="n">panel.grid.minor</span> <span class="o">=</span> </span><span class="n">element_blank</span><span class="nn">()</span><span class="n">,</span>
+                    </span><span class="n">panel.border</span> <span class="o">=</span> </span><span class="n">element_blank</span><span class="nn">()</span><span class="n">,</span>
+                    </span><span class="n">panel.background</span> <span class="o">=</span> </span><span class="n">element_blank</span><span class="nn">() )</span> <span class="o">+
+</span><span class="k">labs</span><span class="nn">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">"Customer service calls - Churn vs Non Churn"</span><span class="n">, fill </span><span class="o">=</span> <span class="s">"Churn"</span><span class="nn">)</span> <span class="o">+
+</span><span class="k">scale_fill_manual</span><span class="nn">(</span><span class="n">values</span> <span class="o">=</span> <span class="n">c</span><span class="nn">(</span><span class="s">"Yes"</span> <span class="o">=</span> <span class="s">"red"</span><span class="n">, </span><span class="s">"No"</span> <span class="o">=</span> <span class="s">"blue"</span><span class="nn">)</span><span class="n">,
+                  </span><span class="n">labels</span> <span class="o">=</span> <span class="n">c</span><span class="nn">(</span><span class="s">"Yes"</span> <span class="o">=</span> <span class="s">"Churn"</span><span class="n">, </span><span class="s">"No"</span> <span class="o">=</span> <span class="s">"Non-churn"</span><span class="nn">))</span>  
+</code></pre></div></div>   
+
+
+
         
         
         
-        
-        <h2 id="delivery-route-optimization">Delivery Route Optimization</h2>
+        <h2 id="delivery-route-optimization">Project 2: Delivery Route Optimization</h2>
 
 <p>Given the boom in e-commerce, delivery service plays a vital part in creating competitive advantages and is key to minizing cost for businesses as well. E-commerce firms, whose thousands of warehouses are distributed nationwide, always want to minimize the distance to deliver goods from a warehouse to a customer. That being said, selecting which warehouse to take goods and deliver to a specific customer is the first thing to consider. Excel Solver can previously be used for this task. The strong expansion of e-commerce firms, however, inevitably leads to larger dataset over time that makes it hard for Excel to handle. To overcome this challenge, I believe <strong>Python</strong> is the way to go. </p>
 
