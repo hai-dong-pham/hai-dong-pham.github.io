@@ -392,10 +392,18 @@
 </code></pre></div></div>                                                                                                                                 
 
 <p class="small text-center"><img src="assets/Customer Churn/churn variable.JPG" width="680" class="align-center" />
-<em>Dataset structure</em></p>  
+<em>Response variable distribution</em></p>  
+
+<p>This is an imbalanced dataset with 2,850 No values and 483 Yes values in response variable. As a preliminary analysis we can visualize how features vary for customers that continue and discontinue services. </p>  
         
-        
-        
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plot_dat</span> <span class="o"><-</span> <span class="n">tele_data</span>
+              </span><span class="k">plot_dat</span><span class="nn">$</span><span class="n">Churn</span> <span class="o"><-</span> <span class="n">as.factor</span><span class="nn">(</span><span class="n">plot_dat</span><span class="nn">$</span><span class="n">Churn</span>
+              </span><span class="k">theme</span><span class="nn">(</span><span class="n">panel.grid.major</span> <span class="o">=</span> <span class="n">element_blank</span><span class="nn">()</span><span class="n">,</span>
+                    </span><span class="n">panel.grid.minor</span> <span class="o">=</span> </span><span class="n">element_blank</span><span class="nn">()</span><span class="n">,</span>
+                    </span><span class="n">panel.border</span> <span class="o">=</span> </span><span class="n">element_blank</span><span class="nn">()</span><span class="n">,</span>
+                    </span><span class="n">panel.background</span> <span class="o">=</span> </span><span class="n">element_blank</span><span class="nn">() )</span> <span class="o">+
+                    </span><span class="n">labs</span><span class="nn">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">"Do customers churn?"</span><span class="n">, fill</span><span class="o">=</span> <span class="s">"Churn"</span><span class="nn">)</span>   
+</code></pre></div></div>         
         
         
         
