@@ -357,13 +357,13 @@
 
 <p>Load packages and dataset </p>        
 
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">library</span><span class="n">(</span><span class="nn">dplyr</span><span class="n">)</span>       
-<span class="kn">library</span><span class="n">(</span><span class="nn">ggplot2</span><span class="n">)</span>
-<span class="kn">library</span><span class="n">(</span><span class="nn">reshape2</span><span class="n">)</span>
-<span class="kn">library</span><span class="n">(</span><span class="nn">glmnet</span><span class="n">)</span>
-<span class="kn">library</span><span class="n">(</span><span class="nn">plotmo</span><span class="n">)</span>
-<span class="kn">library</span><span class="n">(</span><span class="nn">tidyverse</span><span class="n">)</span>
-<span class="kn">library</span><span class="n">(</span><span class="nn">caret</span><span class="n">)</span>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">library</span><span class="nn">(</span><span class="n">dplyr</span><span class="nn">)</span>       
+<span class="kn">library</span><span class="nn">(</span><span class="n">ggplot2</span><span class="nn">)</span>
+<span class="kn">library</span><span class="nn">(</span><span class="n">reshape2</span><span class="nn">)</span>
+<span class="kn">library</span><span class="nn">(</span><span class="n">glmnet</span><span class="nn">)</span>
+<span class="kn">library</span><span class="nn">(</span><span class="n">plotmo</span><span class="nn">)</span>
+<span class="kn">library</span><span class="nn">(</span><span class="n">tidyverse</span><span class="nn">)</span>
+<span class="kn">library</span><span class="nn">(</span><span class="n">caret</span><span class="nn">)</span>
 </code></pre></div></div>   
         
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tele_data</span> <span class="o">=</span> <span class="n">read_csv</span><span class="p">(</span><span class="s">C:/Users/Hai Pham/Desktop/Telecom dataset.csv'</span><span class="p">)</span>  
@@ -381,7 +381,7 @@
 
 <p>Based upon the structure function above, it is obvious that State and Area code are identifiers and thus have no explanatory power. Churn would be the response variable and the other 17 variables are explanatory variables. Let's visualize the distribution of response variable. </p>        
 
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tele_data</span> <span class="o">%>%</span> <span class="k">ggplot</span><span class="n">(</span><span class="k">aes</span><span class="n">(x</span> <span class="o">=</span> <span class="n">Churn, </span><span class="n">fill</span> <span class="o">=</span> <span class="n">Churnn))</span>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tele_data</span> <span class="o">%>%</span> <span class="k">ggplot</span><span class="n">(</span><span class="k">aes</span><span class="n">(x</span> <span class="o">=</span> <span class="n">Churn, </span><span class="n">fill</span> <span class="o">=</span> <span class="n">Churn))</span>
 </code></pre></div></div>     
         
         <h2 id="delivery-route-optimization">Delivery Route Optimization</h2>
