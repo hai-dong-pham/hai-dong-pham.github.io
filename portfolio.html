@@ -334,7 +334,13 @@
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-bookmark"></i> Table of Contents</h4></header>
               <ul class="toc__menu">
-  <li><a href="#customer-churn-prediction">Project 1: Customer Churn Prediction with Machine Learning</a>              
+  <li><a href="#customer-churn-prediction">Project 1: Customer Churn Prediction with Machine Learning</a>
+      <ul>
+      <li><a href="#Data Exploration">Data Exploration</a></li>
+      <li><a href="#Modeling1">Modeling</a></li>
+      <li><a href="#Model Performance Evaluation">Model Performance Evaluation</a></li>
+      <li><a href="#Conclusion1">Conclusion</a></li>
+    </ul>
   <li><a href="#delivery-route-optimization">Project 2: Delivery Optimization for E-commerce Businesses</a>
       <ul>
       <li><a href="#looking at the data">Data Exploration</a></li>
@@ -459,7 +465,7 @@
 
 <p>The above boxplots show that Total Day Charge, Total Day Minutes, Total Evening Minutes, Total International Charge, and Total International Minutes of customers churning service tend to be higher than those of customer continuing services. Now that we get a good sense of response variable distribution and impact of certain features on the response variable, let's move to the modeling process. </p>
 
-<h3 id="Modeling">Modeling</h3>
+<h3 id="Modeling1">Modeling</h3>
 
 <p>Split the data into train/test sets with 80% of observations for train dataset and 20% of observations for test dataset. </p>
 
@@ -509,9 +515,9 @@ the training set should be the one above with AIC of 1,800.4.</p>
 
 <p>The metric for evaluation is Accuracy. The model obtains an accuracy rate of 87.9% when it is used to predict response variables of test set. </p> 
 
-<h3 id="Conclusion">Conclusion</h3>
+<h3 id="Conclusion1">Conclusion</h3>
 
-<p>Given pretty good accuracy rate of 87.9%, the above model overcomes the issue of imblanced data in the training set and thus can be leveraged to predict customers that are likely to churn going forward. Firms can use prediction ouput to take appropriate actions in time to retain customers that are likely to cancel subscription plan</p>
+<p>Given pretty good accuracy rate of 87.9%, the above model overcomes the issue of imblanced data in the training set and thus can be leveraged to predict customers that are likely to churn going forward. With historical behavioral data of a certain customer, firms can predict whether she/he is going to churn and firms cane take appropriate actions in time to retain that customers. </p>
 
 
 
