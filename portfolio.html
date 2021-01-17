@@ -544,86 +544,14 @@ the training set should be the one above with AIC of 1,800.4.</p>
 
 
 
-        <h2 id="delivery-route-optimization">Project 2: Delivery Optimization for E-commerce Businesses</h2>
+        <h2 id="delivery-route-optimization">Delivery Optimization</h2>
 
-<p>Given the boom in e-commerce, delivery service plays a vital part in creating competitive advantages and is key to minizing cost for businesses as well. E-commerce firms, whose thousands of warehouses are distributed nationwide, always want to minimize the distance to deliver goods from a warehouse to a customer. That being said, selecting which warehouse to take goods and deliver to a specific customer is the first thing to consider. Excel Solver can previously be used for this task. The strong expansion of e-commerce firms, however, inevitably leads to larger dataset over time that makes it hard for Excel to handle. To overcome this challenge, I believe <strong>Python</strong> is the way to go. </p>
+<p>Given the boom in e-commerce, delivery service plays a vital part in creating competitive advantages and is key to minizing cost for businesses as well. E-commerce firms, whose thousands of warehouses are distributed nationwide, always want to minimize the distance to deliver goods from a warehouse to a customer. That being said, selecting which warehouse to take goods and deliver to a specific customer is the first thing to consider. </p>
 
-<p>With that idea in mind, I undertook a pilot project that leveraged Python to optimize the delivery route between warehouse and a sample of customer. Due to the availability of data, I decided to choose Costco as a proxy for business with hundreds of warehouses and Starbuck stores as a sample of customers. These dataset were obtained from Kaggle.com. </p>  
+<p>With that idea in mind, I leverage Python to carry out delivery optimization from warehouses and customers. Due to the availability of data, I decided to choose Costco as a proxy for business with hundreds of warehouses and Starbuck stores as a sample of customers. These dataset were obtained from Kaggle.com. </p>  
 
-<h3 id="looking at the data">Data Exploration</h3>       
-        
-<p>Let's get started with loading packages we are going to use in this project. </p>
-               
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
-<span class="kn">from</span> <span class="nn">geopy</span> <span class="kn">import</span> <span class="n">distance</span>
-</code></pre></div></div>          
-  
-<p>Load the datasets. </p> 
-        
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">costco_raw_data</span> <span class="o">=</span> <span class="n">pd.read_csv</span><span class="p">(</span><span class="s">r'C:\Users\Hai Pham\Desktop\Delivery Optimization Project\costco warehouse.csv'</span><span class="p">)</span>
-<span class="n">starbuck_raw_data</span> <span class="o">=</span> <span class="n">pd.read_csv</span><span class="p">(</span><span class="s">r'C:\Users\Hai Pham\Desktop\Delivery Optimization Project\starbuck.csv'</span><span class="p">)</span>                               
-</code></pre></div></div>        
-        
-<p>The first dataset includes information on 782 Costco warehouses and the second one contains details about 25,600 Starbuck store worldwide. Below are some first rows of those datasets and links to download entire datasets: </p>        
-                   
-<p class="small text-center"><img src="assets/Delivery Optimization/10-row-starbuck.jpg" width="680" class="align-center" />
-<em>A few first rows of Starbuck dataset</em></p>
-        
-<p class="small text-center"><img src="assets/Delivery Optimization/10-row-costco.jpg" width="680" class="align-center" />
-<em>A few first rows of Costco dataset</em></p>
-          
-<p class="text-center"><a href="assets/Delivery Optimization/costco warehouse.csv" class="btn btn--info">Costco Dataset</a> <a href="assets/Delivery Optimization//starbuck.csv" class="btn btn--info">Starbuck Dataset</a> </p>                  
-
-<h3 id="data cleaning">Data Cleaning</h3>             
-        
-<p>Due to limited CPU processing power, I decided to cover only US-based Costco warehouses and a sample of Starbuck stores nationwide. Both datasets were then cleaned and unnecessary columns were taken out. </p> 
-
-<p>Filter Costco warehouses which are based in the US and select necessary columns for this project. We obtained 543 Costco warehouses around the US.</p>         
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">costco_raw_data1</span> <span class="o">=</span> <span class="n">costco_raw_data[costco_raw_data[</span><span class="s">'country'</span><span class="p">] == </span><span class="s">'US'</span><span class="p">]</span> 
-<span class="n">costco</span> <span class="o">=</span> <span class="n">costco_raw_data1.loc[:, [</span><span class="s">'stlocID'</span><span class="p">,</span><span class="s"> 'city'</span><span class="p">,</span><span class="s"> 'state'</span><span class="p">,</span><span class="s"> 'latitude'</span><span class="p">,</span><span class="s"> 'longitude'</span><span class="p">]]</span>                                
-</code></pre></div></div>
-        
-<p>Filter a random sample of 100 Starbuck stores which are based in the US and select necessary columns for this project.</p>
-               
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">starbuck_raw_data1</span> <span class="o">=</span> <span class="n">starbuck_raw_data[starbuck_raw_data[</span><span class="s">'Country'</span><span class="p">] == </span><span class="s">'US'</span><span class="p">]</span> 
-<span class="n">starbuck</span> <span class="o">=</span> <span class="n">starbuck_raw_data1.loc[:, [</span><span class="s">'Store Number'</span><span class="p">,</span><span class="s"> 'City'</span><span class="p">,</span><span class="s"> 'State/Province'</span><span class="p">,</span><span class="s"> 'Latitude'</span><span class="p">,</span><span class="s"> 'Longitude'</span><span class="p">]]</span>                                
-<span class="n">starbuck_100</span> <span class="o">=</span> <span class="n">starbuck.sample(n</span> <span class="o">= </span><span class="mi">100</span><span class="n">, </span><span class="n">random_state </span><span class="o">=</span><span class="mi"> 5</span><span class="n">)</span>                              
-</code></pre></div></div>        
-
-<h3 id="modeling">Modeling</h3>         
-        
-<p>I then used <code class="language-plaintext highlighter-rouge">for</code> loop to pair each Starbuck store with all Costco warehouses and calculate their associated distance based on their latitude and longitude using <code class="language-plaintext highlighter-rouge">distance</code> function. The output was stored in a dictionary called <code class="language-plaintext highlighter-rouge">final</code>.</p> 
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Construct a dictionary to store final output
-</span><span class="n">final </span><span class="o">=</span> <span class="n">{</span><span class="s">'Starbuck_store_id'</span><span class="p">: [],</span><span class="s"> 'Costco_warehouse_id'</span><span class="p">: [], </span><span class="s">'Distance'</span><span class="p">: []}
-</span>                            
-<span class="c1"># Use for loop to calculate the distance from each Starbuck store to all Costco warehouses.
-</span><span class="k">for</span><span class="n"> starbuck_id </span><span class="k">in</span><span class="n"> starbuck_100[</span><span class="s">'Store Number'</span><span class="n">]:
-    </span><span class="k">for</span><span class="n"> costco_id</span><span class="k"> in</span><span class="n"> costco[</span><span class="s">'stlocID'</span><span class="n">]:
-        </span><span class="n">starbuck_store </span><span class="o">= </span><span class="n">starbuck_100[starbuck_100[</span><span class="s">'Store Number' </span><span class="n">] == starbuck_id]
-        </span><span class="n">costco_warehouse </span><span class="o">= </span><span class="n">costco[costco[</span><span class="s">'stlocID'</span><span class="n">] == costco_id]</span>
-               
-        <span class="n">starbuck_store_location</span><span class="o"> = </span><span class="n">(starbuck_store[</span><span class="s">'Latitude'</span><span class="n">].values, starbuck_store[</span><span class="s">'Longitude'</span><span class="n">].values)</span>                             
-        <span class="n">costco_warehouse_location</span><span class="o"> = </span><span class="n">(costco_warehouse[</span><span class="s">'latitude'</span><span class="n">].values, costco_warehouse[</span><span class="s">'longitude'</span><span class="n">].values)</span>
-
-        <span class="n">dist</span><span class="o"> = </span><span class="n">distance.distance(starbuck_store_location, costco_warehouse_location).miles</span>
-        
-        <span class="n">final[</span><span class="s">'Starbuck_store_id'</span><span class="n">].append(starbuck_id)</span>
-        <span class="n">final[</span><span class="s">'Costco_warehouse_id'</span><span class="n">].append(costco_id)</span>
-        <span class="n">final[</span><span class="s">'Distance'</span><span class="n">].append(dist)</span>
-</code></pre></div></div>    
-        
-<p>The model paired 100 Starbuck stores with all 543 Costco warehouses, leading to 54,300 pairs. I then sorted this output into ascending order of distance to come up with Costco warehouse that is closest to each Starbuck store, obtaining a final outcome of 100 paris. Costco warehouse in each pair was the one selected to take goods and deliver to its associated Starbuck store. </p>        
-
-       
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">final_dataframe</span><span class="o"> = </span><span class="n">pd.DataFrame(final)</span>
-<span class="n">final_dataframe</span><span class="o"> = </span><span class="n">final_dataframe.sort_values(by=[</span><span class="s">'Starbuck_store_id'</span><span class="p">,</span><span class="s">'Distance'<span class="n">], ascending</span><span class="o"> = </span><span class="mi">True</span><span class="n">)</span>
-<span class="n">final_dataframe</span><span class="o"> = </span><span class="n">final_dataframe.groupby(<span class="s">'Starbuck_store_id'</span><span class="n">).head(</span><span class="mi">1</span><span class="n">)</span>
-
-<span class="n">final_dataframe.to_csv(</span><span class="s">'final.csv'</span><span class="n">)</span>
-</code></pre></div></div>  
+<p><a href="https://github.com/hai-dong-pham/Prescriptive-Analytics/blob/main/Delivery%20Optimization.ipynb">Notebook</a>: Delivery Optimization.</li>
+</p>
 
 <p>Let's take a look at the first 10 rows of the final output. </p>
   
