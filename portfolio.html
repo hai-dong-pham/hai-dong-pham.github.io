@@ -367,7 +367,7 @@
 
         <p>One approach is to leverage customer data and loan application data to predict if a customer is going to default. With those insights, the bank can decide on approval of loan applicaiton or take appropriate actions to mitigate/prevent loss from customer default. That being said, I aims to leverage <strong>Python</strong> to build machine learning models to help banks carry out the prediction. </p>
         
-        <p><a href="https://github.com/hai-dong-pham/Machine-Learning/blob/main/Loan%20Default%20Prediction.ipynb">Notebook</a>: Loan Default Prediction.</li>
+        <p><a href="https://github.com/hai-dong-pham/Machine-Learning/blob/main/Loan%20Default%20Prediction.ipynb">Notebook</a>: Loan Default Prediction</li>
 </p>
         
         <p><img src="assets/Loan Default/Loan Default Prediction.JPG" width="580" class="align-center" /></p>
@@ -375,171 +375,10 @@
         <h2 id="customer-churn-prediction">Customer Churn Prediction</h2>
 <p>Customer retention is key to sustainable growth for Software-as-a-Service (SaaS) companies since the cost of retaining existing customers is much less than acquiring new ones. Customers, however, now retract their loyalty more quickly than they did a few years ago. Therefore, identifying factors that affect customers’ decision on canceling a subscription is becoming increasingly crucial for these firms. </p> 
 
-<p>My goal is to develop a prediction model using Machine Learning that helps those firms identify customers that are likely to discontinue their services so that those firms can take necessary actions to retain their current customers. Due to unavailability of customer data of SaaS companies, I searched for similar data in other industries to use in this project and came up with a dataset of a telecommunication firm on Kaggle. With subscription-based business of telecommunication, this customer dataset would be a good alternative to that of SaaS. The inputs for this project would be customer’s historical behaviors. Based on those data a classification model is trained and then used to predict if certain customers are going to discontinue services in the near future. <strong>R</strong> is the tool leveraged for this project. </p>        
+<p>My goal is to develop a prediction model using Machine Learning that helps those firms identify customers that are likely to discontinue their services so that those firms can take necessary actions to retain their current customers. Due to unavailability of customer data of SaaS companies, I searched for similar data in other industries as a proxy and came up with a dataset of a telecommunication firm on Kaggle. With subscription-based business of telecommunication, this customer dataset would be a good alternative to that of SaaS. The inputs for this project would be customer’s historical behaviors. Based on those data a classification model is trained and then used to predict if certain customers are going to discontinue services.</p>        
 
-<h3 id="Data Exploration">Data Exploration</h3>
-
-<p>Load packages and dataset </p>        
-
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">library</span><span class="nn">(</span><span class="n">dplyr</span><span class="nn">)</span>       
-<span class="kn">library</span><span class="nn">(</span><span class="n">ggplot2</span><span class="nn">)</span>
-<span class="kn">library</span><span class="nn">(</span><span class="n">reshape2</span><span class="nn">)</span>
-<span class="kn">library</span><span class="nn">(</span><span class="n">glmnet</span><span class="nn">)</span>
-<span class="kn">library</span><span class="nn">(</span><span class="n">plotmo</span><span class="nn">)</span>
-<span class="kn">library</span><span class="nn">(</span><span class="n">tidyverse</span><span class="nn">)</span>
-<span class="kn">library</span><span class="nn">(</span><span class="n">caret</span><span class="nn">)</span>
-</code></pre></div></div>   
-        
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tele_data</span> <span class="o">=</span> <span class="n">read_csv</span><span class="nn">(</span><span class="s">'C:/Users/Hai Pham/Desktop/Telecom dataset.csv'</span><span class="nn">)</span>  
-</code></pre></div></div> 
-
-<p>Take a look at the structure of dataset. </p>
-        
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">str</span><span class="nn">(</span><span class="n">tele_data</span><span class="nn">)</span>
-</code></pre></div></div> 
-
-<p class="small text-center"><img src="assets/Customer Churn/Tele_data_str.JPG" width="680" class="align-center" />
-<em>Dataset structure</em></p>
-
-<p>The dataset used for this project includes customers’ usage data of a telecomcomunications company, Orange S.A. (“Orange”), and is publicly available on Kaggle. The dataset consists of 3,333 observations, each of which describes features of a unique customer. There are 20 variables, 19 of which are customers’ demographic and usage data and 1 churn label specifying whether a customer continues or discontinues Orange ’s services. There are no missing values in this dataset. </p>        
-
-<p>Based upon the structure function above, it is obvious that State and Area code are identifiers and thus have no explanatory power. Churn would be the response variable and the other 17 variables are explanatory variables. Let's visualize the distribution of response variable. </p>        
-
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tele_data</span> <span class="o">%>%</span> <span class="k">ggplot</span><span class="nn">(</span><span class="k">aes</span><span class="nn">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">Churn, </span><span class="n">fill</span> <span class="o">=</span> <span class="n">Churn</span><span class="nn">))</span> <span class="o">+
-              </span><span class="k">geom_bar</span><span class="nn">()</span> <span class="o">+
-              </span><span class="k">theme_set</span><span class="nn">(</span><span class="n">theme_bw</span><span class="nn">(</span><span class="n">base_size</span> <span class="o">=</span> <span class="mi">22</span><span class="nn">) )</span> <span class="o">+
-              </span><span class="k">theme</span><span class="nn">(</span><span class="n">panel.grid.major</span> <span class="o">=</span> <span class="n">element_blank</span><span class="nn">()</span><span class="n">,</span>
-                    </span><span class="n">panel.grid.minor</span> <span class="o">=</span> </span><span class="n">element_blank</span><span class="nn">()</span><span class="n">,</span>
-                    </span><span class="n">panel.border</span> <span class="o">=</span> </span><span class="n">element_blank</span><span class="nn">()</span><span class="n">,</span>
-                    </span><span class="n">panel.background</span> <span class="o">=</span> </span><span class="n">element_blank</span><span class="nn">() )</span> <span class="o">+
-              </span><span class="k">labs</span><span class="nn">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">"Do customers churn?"</span><span class="n">, fill</span><span class="o">=</span> <span class="s">"Churn"</span><span class="nn">)</span>   
-</code></pre></div></div>                                                                                                                                 
-
-<p class="small text-center"><img src="assets/Customer Churn/churn variable.JPG" width="680" class="align-center" />
-<em>Response variable distribution</em></p>  
-
-<p>This is an imbalanced dataset with 2,850 No values and 483 Yes values in response variable. This imbalance issue should be taken into account in modeling step. As a preliminary analysis we can visualize how features vary for customers that continue and discontinue services. </p>  
-        
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plot_dat</span> <span class="o"><-</span> <span class="n">tele_data
-</span><span class="n">plot_dat</span><span class="nn">$</span><span class="n">Churn</span> <span class="o"><-</span> <span class="n">as.factor</span><span class="nn">(</span><span class="n">plot_dat</span><span class="nn">$</span><span class="n">Churn</span><span class="nn">)
-</span><span class="k">ggplot</span><span class="nn">(</span><span class="n">plot_dat, </span><span class="k">aes</span><span class="nn">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">Account.length, fill </span><span class="o">=</span> <span class="n">Churn</span><span class="nn">))</span> <span class="o">+
-</span><span class="k">geom_density</span><span class="nn">(</span><span class="n">alpha<span class="o"> = <span class="mi">0.5</span><span class="nn">)</span> <span class="o">+
-</span><span class="k">theme_set</span><span class="nn">(</span><span class="n">theme_bw</span><span class="nn">(</span><span class="n">base_size</span> <span class="o">=</span> <span class="mi">22</span><span class="nn">) )</span> <span class="o">+
-</span><span class="k">theme</span><span class="nn">(</span><span class="n">panel.grid.major</span> <span class="o">=</span> <span class="n">element_blank</span><span class="nn">()</span><span class="n">,</span>
-                    </span><span class="n">panel.grid.minor</span> <span class="o">=</span> </span><span class="n">element_blank</span><span class="nn">()</span><span class="n">,</span>
-                    </span><span class="n">panel.border</span> <span class="o">=</span> </span><span class="n">element_blank</span><span class="nn">()</span><span class="n">,</span>
-                    </span><span class="n">panel.background</span> <span class="o">=</span> </span><span class="n">element_blank</span><span class="nn">() )</span> <span class="o">+
-</span><span class="k">labs</span><span class="nn">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">"Account length - Churn vs Non Churn"</span><span class="n">, fill </span><span class="o">=</span> <span class="s">"Churn"</span><span class="nn">)</span> <span class="o">+
-</span><span class="k">scale_fill_manual</span><span class="nn">(</span><span class="n">values</span> <span class="o">=</span> <span class="n">c</span><span class="nn">(</span><span class="s">"Yes"</span> <span class="o">=</span> <span class="s">"red"</span><span class="n">, </span><span class="s">"No"</span> <span class="o">=</span> <span class="s">"blue"</span><span class="nn">)</span><span class="n">,
-                  </span><span class="n">labels</span> <span class="o">=</span> <span class="n">c</span><span class="nn">(</span><span class="s">"Yes"</span> <span class="o">=</span> <span class="s">"Churn"</span><span class="n">, </span><span class="s">"No"</span> <span class="o">=</span> <span class="s">"Non-churn"</span><span class="nn">))</span>  
-</code></pre></div></div>         
-        
-<p class="small text-center"><img src="assets/Customer Churn/account length vs churn.JPG" width="680" class="align-center" />
-        
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">ggplot</span><span class="nn">(</span><span class="n">plot_dat, </span><span class="k">aes</span><span class="nn">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">Customer.service.calls, fill </span><span class="o">=</span> <span class="n">Churn</span><span class="nn">))</span> <span class="o">+
-</span><span class="k">geom_density</span><span class="nn">(</span><span class="n">alpha<span class="o"> = <span class="mi">0.5</span><span class="nn">)</span> <span class="o">+
-</span><span class="k">theme_set</span><span class="nn">(</span><span class="n">theme_bw</span><span class="nn">(</span><span class="n">base_size</span> <span class="o">=</span> <span class="mi">22</span><span class="nn">) )</span> <span class="o">+
-</span><span class="k">theme</span><span class="nn">(</span><span class="n">panel.grid.major</span> <span class="o">=</span> <span class="n">element_blank</span><span class="nn">()</span><span class="n">,</span>
-                    </span><span class="n">panel.grid.minor</span> <span class="o">=</span> </span><span class="n">element_blank</span><span class="nn">()</span><span class="n">,</span>
-                    </span><span class="n">panel.border</span> <span class="o">=</span> </span><span class="n">element_blank</span><span class="nn">()</span><span class="n">,</span>
-                    </span><span class="n">panel.background</span> <span class="o">=</span> </span><span class="n">element_blank</span><span class="nn">() )</span> <span class="o">+
-</span><span class="k">labs</span><span class="nn">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">"Customer service calls - Churn vs Non Churn"</span><span class="n">, fill </span><span class="o">=</span> <span class="s">"Churn"</span><span class="nn">)</span> <span class="o">+
-</span><span class="k">scale_fill_manual</span><span class="nn">(</span><span class="n">values</span> <span class="o">=</span> <span class="n">c</span><span class="nn">(</span><span class="s">"Yes"</span> <span class="o">=</span> <span class="s">"red"</span><span class="n">, </span><span class="s">"No"</span> <span class="o">=</span> <span class="s">"blue"</span><span class="nn">)</span><span class="n">,
-                  </span><span class="n">labels</span> <span class="o">=</span> <span class="n">c</span><span class="nn">(</span><span class="s">"Yes"</span> <span class="o">=</span> <span class="s">"Churn"</span><span class="n">, </span><span class="s">"No"</span> <span class="o">=</span> <span class="s">"Non-churn"</span><span class="nn">))</span>  
-</code></pre></div></div>   
-
-<p class="small text-center"><img src="assets/Customer Churn/customer service call.JPG" width="680" class="align-center" />
-
-<p>From the above density plots, we can tell that there is not really a difference in account length between customer continuing and customer discontinuing services. However, the second plot indicates that customers churning services give more calls to customer services than customer continuing subscription plan. </p>          
-        
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">m_dat</span> <span class="o"><-</span> <span class="k">melt<span class="nn">(</span><span class="n">plot_dat, is.vars</span> <span class="o">=</span> <span class="s">"Churn"</span><span class="nn">)
-</span><span class="n">m_dat</span><span class="nn">$</span><span class="n">var_2</span> <span class="o"><-</span> <span class="k">rep</span><span class="nn">(</span><span class="s">"Total.day.minutes"</span><span class="n">, nrow</span><span class="nn">(</span><span class="n">m_dat<span class="nn">))
-</span><span class="n">m_dat</span><span class="nn">$</span><span class="n">var_2</span><span class="nn">[</span><span class="n">which</span><span class="nn">(</span><span class="n">m_dat</span><span class="nn">$</span><span class="n">variable</span> <span class="o">==</span> <span class="s">"Total.day.calls"</span><span class="nn">)] <span class="o"><-</span> <span class="s">"Total Day Calls"
-</span><span class="n">m_dat</span><span class="nn">$</span><span class="n">var_2</span><span class="nn">[</span><span class="n">which</span><span class="nn">(</span><span class="n">m_dat</span><span class="nn">$</span><span class="n">variable</span> <span class="o">==</span> <span class="s">"Total.day.charge"</span><span class="nn">)] <span class="o"><-</span> <span class="s">"Total Day Charge"
-</span><span class="n">m_dat</span><span class="nn">$</span><span class="n">var_2</span><span class="nn">[</span><span class="n">which</span><span class="nn">(</span><span class="n">m_dat</span><span class="nn">$</span><span class="n">variable</span> <span class="o">==</span> <span class="s">"Total.eve.minutes"</span><span class="nn">)] <span class="o"><-</span> <span class="s">"Total Evening Minutes"
-</span><span class="n">m_dat</span><span class="nn">$</span><span class="n">var_2</span><span class="nn">[</span><span class="n">which</span><span class="nn">(</span><span class="n">m_dat</span><span class="nn">$</span><span class="n">variable</span> <span class="o">==</span> <span class="s">"Total.eve.calls"</span><span class="nn">)] <span class="o"><-</span> <span class="s">"Total Evening Calls"
-</span><span class="n">m_dat</span><span class="nn">$</span><span class="n">var_2</span><span class="nn">[</span><span class="n">which</span><span class="nn">(</span><span class="n">m_dat</span><span class="nn">$</span><span class="n">variable</span> <span class="o">==</span> <span class="s">"Total.eve.charge"</span><span class="nn">)] <span class="o"><-</span> <span class="s">"Total Evening Charge"
-</span><span class="n">m_dat</span><span class="nn">$</span><span class="n">var_2</span><span class="nn">[</span><span class="n">which</span><span class="nn">(</span><span class="n">m_dat</span><span class="nn">$</span><span class="n">variable</span> <span class="o">==</span> <span class="s">"Total.night.minutes"</span><span class="nn">)] <span class="o"><-</span> <span class="s">"Total Night Minutes" 
-</span><span class="n">m_dat</span><span class="nn">$</span><span class="n">var_2</span><span class="nn">[</span><span class="n">which</span><span class="nn">(</span><span class="n">m_dat</span><span class="nn">$</span><span class="n">variable</span> <span class="o">==</span> <span class="s">"Total.night.calls"</span><span class="nn">)] <span class="o"><-</span> <span class="s">"Total Night Calls" 
-</span><span class="n">m_dat</span><span class="nn">$</span><span class="n">var_2</span><span class="nn">[</span><span class="n">which</span><span class="nn">(</span><span class="n">m_dat</span><span class="nn">$</span><span class="n">variable</span> <span class="o">==</span> <span class="s">"Total.night.charge"</span><span class="nn">)] <span class="o"><-</span> <span class="s">"Total Night Charge"
-</span><span class="n">m_dat</span><span class="nn">$</span><span class="n">var_2</span><span class="nn">[</span><span class="n">which</span><span class="nn">(</span><span class="n">m_dat</span><span class="nn">$</span><span class="n">variable</span> <span class="o">==</span> <span class="s">"Total.intl.minutes"</span><span class="nn">)] <span class="o"><-</span> <span class="s">"Total International Minutes"
-</span><span class="n">m_dat</span><span class="nn">$</span><span class="n">var_2</span><span class="nn">[</span><span class="n">which</span><span class="nn">(</span><span class="n">m_dat</span><span class="nn">$</span><span class="n">variable</span> <span class="o">==</span> <span class="s">"Total.intl.calls"</span><span class="nn">)] <span class="o"><-</span> <span class="s">"Total International Calls"
-</span><span class="n">m_dat</span><span class="nn">$</span><span class="n">var_2</span><span class="nn">[</span><span class="n">which</span><span class="nn">(</span><span class="n">m_dat</span><span class="nn">$</span><span class="n">variable</span> <span class="o">==</span> <span class="s">"Total.intl.charge"</span><span class="nn">)] <span class="o"><-</span> <span class="s">"Total International Charge"
-
-</span><span class="k">ggplot</span><span class="nn">(</span><span class="n">m_dat, </span><span class="k">aes</span><span class="nn">(</span><span class="n">y</span> <span class="o">=</span> <span class="n">value, x <span class="o">=</span> Churn, fill </span><span class="o">=</span> <span class="n">Churn</span><span class="nn">))</span> <span class="o">+
-</span><span class="k">geom_boxplot</span><span class="nn">()</span> <span class="o">+
-</span><span class="k">face_wrap</span><span class="nn">(~</span><span class="n">var_2, scales </span> <span class="o">=</span> <span class="s">"free"<span class="nn">)</span> <span class="o">+
-</span><span class="k">theme_wrap</span><span class="nn">()</span> <span class="o">+
-</span><span class="k">theme</span><span class="nn">(</span><span class="n">panel.grid.major</span> <span class="o">=</span> <span class="n">element_blank</span><span class="nn">()</span><span class="n">,</span>
-                    </span><span class="n">panel.grid.minor</span> <span class="o">=</span> </span><span class="n">element_blank</span><span class="nn">()</span><span class="n">,</span>
-                    </span><span class="n">panel.border</span> <span class="o">=</span> </span><span class="n">element_blank</span><span class="nn">()</span><span class="n">,</span>
-                    </span><span class="n">panel.background</span> <span class="o">=</span> </span><span class="n">element_blank</span><span class="nn">() )</span> <span class="o">+
-</span><span class="k">labs</span><span class="nn">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">"Churn vs Non Churn"</span><span class="n">, fill </span><span class="o">=</span> <span class="s">"Churn?"</span><span class="nn">)</span> <span class="o">+
-</span><span class="k">scale_fill_manual</span><span class="nn">(</span><span class="n">values</span> <span class="o">=</span> <span class="n">c</span><span class="nn">(</span><span class="s">"Yes"</span> <span class="o">=</span> <span class="s">"red"</span><span class="n">, </span><span class="s">"No"</span> <span class="o">=</span> <span class="s">"blue"</span><span class="nn">)</span><span class="n">,
-                  </span><span class="n">labels</span> <span class="o">=</span> <span class="n">c</span><span class="nn">(</span><span class="s">"Yes"</span> <span class="o">=</span> <span class="s">"Yes"</span><span class="n">, </span><span class="s">"No"</span> <span class="o">=</span> <span class="s">"No"</span><span class="nn">))</span>  
-</code></pre></div></div>           
-
-<p class="small text-center"><img src="assets/Customer Churn/boxplot.JPG" width="780" class="align-center" />
-
-<p>The above boxplots show that Total Day Charge, Total Day Minutes, Total Evening Minutes, Total International Charge, and Total International Minutes of customers churning service tend to be higher than those of customer continuing services. Now that we get a good sense of response variable distribution and impact of certain features on the response variable, let's move to the modeling process. </p>
-
-<h3 id="Modeling1">Modeling</h3>
-
-<p>Split the data into train/test sets with 80% of observations for train dataset and 20% of observations for test dataset. </p>
-
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">set.seed</span><span class="nn">(</span><span class="mi">101</span><span class="nn">)
-</span><span class="n">sample</span> <span class="o">=</span> <span class="k">sample.int</span><span class="nn">(</span><span class="n">n</span> <span class="o">=</span> <span class="n">nrow</span><span class="nn">(</span><span class="n">tele_data</span><span class="nn">)</span><span class="n">, size</span> <span class="o">=</span> <span class="n">floor</span><span class="nn">(</span><span class="mi">.8</span><span class="nn">*</span><span class="n">nrow</span><span class="nn">(</span><span class="n">tele_data</span><span class="nn">))</span><span class="n">, replace</span> <span class="o">=</span> <span class="nn">FALSE)          
-</span><span class="n">train</span> <span class="o">=</span> <span class="n">tele_data</span><span class="nn">[</span><span class="n">sample, </span> <span class="nn">]
-</span><span class="n">test</span> <span class="o">=</span> <span class="n">tele_data</span><span class="nn">[-</span><span class="n">sample, </span> <span class="nn">]</span>       
-</code></pre></div></div>
-
-<p>The response variable is a binary variable and classification problem is being solved so logistic regression is a good approach. The 
-logistic regression is a statistical model that uses a logistic function to model the binary response 
-variable, returning probabilities that customers will discontinue services. Let's develop a logistic regression model based on training set of 80% observations. </p>
-
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fit_total</span> <span class="o"><-</span> <span class="k">glm</span><span class="nn">(</span><span class="n">Churn</span> <span class="nn">~</span> <span class="n">.,
-                 </span><span class="n">family</span> <span class="o">=</span> <span class="n">binomial</span><span class="nn">(</span><span class="n">link</span> <span class="o">=</span> <span class="s">'logit'</span><span class="nn">)</span><span class="n">,    
-                 </span><span class="n">data</span> <span class="o">=</span> <span class="n">train</span><span class="nn">)
-</span><span class="k">summary</span><span class="nn">(</span><span class="n">fit_total</span><span class="nn">)</span>       
-</code></pre></div></div>
-
-<p class="small text-center"><img src="assets/Customer Churn/logistic output.JPG" width="680" class="align-center" />
-<em>Logistic regression output</em></p> 
-
-<p>The quality of fit of logistic is evaluated based on its Akaike Information Criterion (AIC). The 
-best fit model according to AIC is the one that explains the greatest amount of variation using the 
-fewest possible independent variables. Therefore, the lower AIC, the better the model is. The above model achieves an AIC of 1,800.4. Out of 17 coefficients, there are 4 ones that have p-values lower than 0.05, which means that 
-they are statistically different from zero and can help explain the response variable. Those 4 
-coefficients go with the following variables: International Plan, Voice Mail Plan, Total 
-International Calls, and Customer Service Calls. However, when a new model is run with only 
-those 4 variables, AIC increases from 1,800.4 to 1,932.4. Therefore, the best model trained from 
-the training set should be the one above with AIC of 1,800.4.</p>
-
-<h3 id="Model Performance Evaluation">Model Performance Evaluation</h3>
-
-<p>The model performance is then evaluated by comparing its predictive values with actual values in the test set. </p> 
-
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">test.probs</span> <span class="o"><-</span> <span class="k">predict</span><span class="nn">(</span><span class="n">fit_total, test, type </span> <span class="o">=</span> <span class="s">'response'</span><span class="nn">)
-</span><span class="n">pred.logit</span> <span class="o"><-</span> <span class="k">rep</span><span class="nn">(</span><span class="s">'No'</span><span class="n">, length</span><span class="nn">(</span><span class="n">test.probs<span class="nn">))
-</span><span class="n">pred.logit</span><span class="nn">[</span><span class="n">test.probs</span><span class="nn">>=</span><span class="mi">0.5</span><span class="nn">]</span> <span class="o"><-</span> <span class="s">'Yes'
-
-</span><span class="k">table</span><span class="nn">(</span><span class="n">pred.logit, test</span><span class="nn">$</span><span class="n">Churn</span><span class="nn">)
-
-</span><span class="k">confusionMatrix</span><span class="nn">(</span><span class="n">test</span><span class="nn">$</span><span class="n">Churn, </span><span class="k">as.factor<span class="nn">(</span><span class="n">pred.logit</span><span class="nn">))</span>          
-</code></pre></div></div>
-
-<p class="small text-center"><img src="assets/Customer Churn/accuracy.JPG" width="680" class="align-center" />
-<em>Confusion Matrix & Accuracy Rate</em></p> 
-
-<p>The metric for evaluation is Accuracy. The model obtains an accuracy rate of 87.9% when it is used to predict response variables of test set. </p> 
-
-<p>Below is the link to get the full R code: </p>  
-<p class="text-center"><a href="assets/Customer Churn/Customer Churn Prediction with Machine Learning.html" class="btn btn--info">R Code</a> </p>    
-
-<h3 id="Conclusion1">Conclusion</h3>
-
-<p>Given pretty good accuracy rate of 87.9%, the above model overcomes the issue of imblanced data in the training set and thus can be leveraged to predict customers that are likely to churn going forward. With historical behavioral data of a certain customer, firms can predict whether she/he is going to churn and firms cane take appropriate actions in time to retain that customers. </p>
-
+<p><a href="https://github.com/hai-dong-pham/Machine-Learning/blob/main/Customer%20Churn%20Prediction.ipynb">Notebook</a>: Customer Churn Prediction.</li>
+</p>
 
 
 
@@ -553,7 +392,7 @@ the training set should be the one above with AIC of 1,800.4.</p>
 
 <p>With that idea in mind, I leverage Python to carry out delivery optimization from warehouses and customers. Due to the availability of data, I decided to choose Costco as a proxy for business with hundreds of warehouses and Starbuck stores as a sample of customers. These dataset were obtained from Kaggle.com. </p>  
 
-<p><a href="https://github.com/hai-dong-pham/Prescriptive-Analytics/blob/main/Delivery%20Optimization.ipynb">Notebook</a>: Delivery Optimization.</li>
+<p><a href="https://github.com/hai-dong-pham/Prescriptive-Analytics/blob/main/Delivery%20Optimization.ipynb">Notebook</a>: Delivery Optimization</li>
 </p>
 <p><img src="assets/Delivery Optimization/geopy.jpg" width="580" class="align-center" /></p>
 
