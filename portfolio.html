@@ -363,16 +363,16 @@
         <h2 id="loan-default-prediction">Loan Default Prediction</h2>
         
         
-        <p><strong>Business problem: </strong>Banks boost the bottom line by providing loans to as many customers as possible. The interest income generated from each loan, however, is just a small proportion of loan amount so if a customer defaults, the bank will incur a huge loss. It is essential for banks to conduct rigorous risk management. How bank can know which customer is going to default so they make better decision on loan approval? </p>
+        <p><u>Business problem: </u>Banks boost the bottom line by providing loans to as many customers as possible. The interest income generated from each loan, however, is just a small proportion of loan amount so if a customer defaults, the bank will incur a huge loss. It is essential for banks to conduct rigorous risk management. How bank can know which customer is going to default so they make better decision on loan approval? </p>
 
-        <p><strong>Proposed solution: </strong>One approach is to leverage customer and loan application data to build machine learning models predicting which customer is going to default. With those insights, the bank can make better decision on loan approval. </p>
+        <p><u>Proposed solution: </u>One approach is to leverage customer and loan application data to build machine learning models predicting which customer is going to default. With those insights, the bank can make better decision on loan approval. </p>
         
         <p><a href="https://github.com/hai-dong-pham/Machine-Learning/blob/main/Loan%20Default%20Prediction.ipynb">Notebook</a>: Loan Default Prediction</li>
 </p>
         
         <p><img src="assets/Loan Default/Loan Default Prediction.JPG" width="580" class="align-center" /></p>
         
-        <p><strong>Conclusion: </strong></p>
+        <p><u>Conclusion: </u></p>
         <ul>
   <li>5 different machine learning models were built for this analysis: Logistic Regression, Decision Tree, Random Forest, AdaBoost, and XGBoost. AdaBoost outperforms other models based on AUC. It would be used to predict probability of default for new loan application and guide approval decision.</li>
   <li>The model also indicates that 3 most important features affecting default probability are (1) amount of credit, (2) number of days before loan application the customer start her/his current job, and (3) number of days before loan application the customer change the identity documents. With these insights, banks can focus on those features of customers to maximize loan amount to boost profit while managing credit risk.</li>
@@ -391,23 +391,23 @@
 <p><strong>Conclusion: </strong></p>
         <ul>
   <li>6 different models were built for this analysis: Logistic Regression, Support Vector Machine, Decision Tree, Random Forest, AdaBoost, and XGBoost. XGBoost outperforms other models based on AUC. It would be used to predict probability of customer churn based on customer’s usage data.</li>
-  <li>•	The model points out that 3 most important features affecting probability of customer churn are (1) international plan subscription, (2) number of customer service calls and (3) total minutes of day call. With these insights, subscription-based firms can detect customers that are going to churn in order to figure out ways to retain them. This expect to improve the customer retention rate and boost the bottom line.</li>
+  <li>The model points out that 3 most important features affecting probability of customer churn are (1) international plan subscription, (2) number of customer service calls and (3) total minutes of day call. With these insights, subscription-based firms can detect customers that are going to churn in order to figure out ways to retain them. This expect to improve the customer retention rate and boost the bottom line.</li>
 </ul>      
 
         <h2 id="prescriptive-analytics">✨ Prescriptive Analytics</h2>
         <p><a href="https://github.com/hai-dong-pham/Prescriptive-Analytics"><img src="https://img.shields.io/badge/GitHub-View_on_GitHub-blue?logo=GitHub" alt="View on GitHub" /></a></p>
         
-        <h3 id="delivery-optimization">Delivery Optimization</h2>
+        <h2 id="delivery-optimization">Delivery Optimization</h2>
 
-<p>Given the boom in e-commerce, delivery service plays a vital part in creating competitive advantages and is key to minizing cost for businesses as well. E-commerce firms, whose thousands of warehouses are distributed nationwide, always want to minimize the distance to deliver goods from a warehouse to a customer. That being said, selecting which warehouse to take goods and deliver to a specific customer is the first thing to consider. </p>
+<p>Business problem: Delivery optimization plays a vital part in creating competitive advantages and is key to minimizing cost for retail firms. When taking orders from customers, how do those firms select one among thousands of nationwide warehouses to collect goods and deliver?</p>
 
-<p>With that idea in mind, I leverage Python to carry out delivery optimization from warehouses and customers. Due to the availability of data, I decided to choose Costco as a proxy for business with hundreds of warehouses and Starbuck stores as a sample of customers. These dataset were obtained from Kaggle.com. </p>  
+<p>Proposed solution: Based on address of customer and warehouse, select the warehouse closest to customer destination to take goods and deliver.</p>  
 
 <p><a href="https://github.com/hai-dong-pham/Prescriptive-Analytics/blob/main/Delivery%20Optimization.ipynb">Notebook</a>: Delivery Optimization</li>
 </p>
 <p><img src="assets/Delivery Optimization/geopy.jpg" width="580" class="align-center" /></p>
 
-
+<p>Conclusion: The algorithm helps pair each customer to the closest warehouse. Based on this model, the retail firm can optimize delivery to cut cost and enhance profit.</p> 
 
 <hr />
 
