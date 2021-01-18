@@ -363,14 +363,19 @@
         <h3 id="loan-default-prediction">Loan Default Prediction</h3>
         
         
-        <p>Consumer banks generate majority of their profit from lending activity. To boost the bottom line, banks keep increasing their loan to as many customers as possible. The interest income generated from each loan, however, is just a small proportion of loan amount so if a customer default, the bank will incur a huge loss. It is essential for banks to conduct rigorous management of credit risk.</p>
+        <p><strong>Business problem:</strong>Banks boost the bottom line by providing loans to as many customers as possible. The interest income generated from each loan, however, is just a small proportion of loan amount so if a customer defaults, the bank will incur a huge loss. It is essential for banks to conduct rigorous risk management. How bank can know which customer is going to default so they make better decision on loan approval? </p>
 
-        <p>One approach is to leverage customer data and loan application data to predict if a customer is going to default. With those insights, the bank can decide on approval of loan applicaiton or take appropriate actions to mitigate/prevent loss from customer default. That being said, I aim to leverage <strong>Python</strong> to build machine learning models to help banks carry out the prediction. </p>
+        <p><strong>Proposed solution:</strong>One approach is to leverage customer and loan application data to build machine learning models predicting which customer is going to default. With those insights, the bank can make better decision on loan approval. </p>
         
         <p><a href="https://github.com/hai-dong-pham/Machine-Learning/blob/main/Loan%20Default%20Prediction.ipynb">Notebook</a>: Loan Default Prediction</li>
 </p>
         
         <p><img src="assets/Loan Default/Loan Default Prediction.JPG" width="580" class="align-center" /></p>
+    
+        <ul>
+  <li>5 different machine learning models were built for this analysis: Logistic Regression, Decision Tree, Random Forest, AdaBoost, and XGBoost. AdaBoost outperforms other models based on AUC. It would be used to predict probability of default for new loan application and guide approval decision.</li>
+  <li><a href="https://github.com/chriskhanhtran/object-detection-detectron2/blob/master/05-kaggle-global-wheat-detection.ipynb">Notebook 5</a>: Apply Detectron2 on <a href="https://www.kaggle.com/c/global-wheat-detection">Kaggle Global Wheat Detection Competition</a>.</li>
+</ul>
         
         <h3 id="customer-churn-prediction">Customer Churn Prediction</h2>
 <p>Customer retention is key to sustainable growth for Software-as-a-Service (SaaS) companies since the cost of retaining existing customers is much less than acquiring new ones. Customers, however, now retract their loyalty more quickly than they did a few years ago. Therefore, identifying factors that affect customers’ decision on canceling a subscription is becoming increasingly crucial for these firms. </p> 
